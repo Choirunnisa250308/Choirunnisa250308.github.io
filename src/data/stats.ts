@@ -1,15 +1,15 @@
 import type { Stat } from '~/types';
 
 export const stats: Stat[] = [
-  { value: 15, label: 'Years independent' },
-  { value: 40, suffix: '+', label: 'Teams partnered' },
-  { value: 96, suffix: '%', label: 'Would hire again' },
+  { value: 2026, label: 'S1 Statistika' },
+  { value: 3, suffix: '+', label: 'Projek' },
+  { value: 100, suffix: '%', label: 'Tingkat kepercayaan analisis' },
 ];
 
 /** Headline above the stats band, split so the tail can be dimmed. */
 export const statsHeading = {
-  lead: 'Design is mostly deciding what to leave out,',
-  tail: 'then defending that decision for six straight weeks.',
+  lead: '"Statistika bukan sekadar mengumpulkan angka,',
+  tail: 'melainkan menemukan pola jujur di balik kebisingan data."',
 };
 
 /**

@@ -5,11 +5,11 @@
  */
 
 export const hero = {
-  greeting: 'Hello. The name is',
+  greeting: 'Hai. Nama saya',
   /** Rendered on two lines. */
-  nameLines: ['Robin', 'Vale'],
+  nameLines: ['CHOIRUNNISA'],
   intro:
-    'I art-direct and design for teams who already know what they are building, and need it to feel like one thing instead of forty.',
+    'Mahasiswi Statistika di Universitas Cenderawasih yang tertarik mengolah data kompleks menjadi wawasan visual yang jelas, terstruktur, dan mudah dipahami.',
   ctaLabel: 'Book a call',
   ctaHref: '/contact/',
   photo: {
@@ -19,23 +19,23 @@ export const hero = {
     height: 1210,
   },
   aside: {
-    roleLine: ['Independent of the Year 2026', 'Art Direction & Interface'],
-    title: ['Art', 'Direction'],
+    roleLine: ['Angkatan 2026 • S1 Statistika', 'Universitas Cenderawasih'],
+    title: ['Matematika'],
     /** Small avatar stack — decorative, so the images carry empty alt text. */
     stack: ['/images/avatar-02.webp', '/images/avatar-01.webp', '/images/avatar-03.webp'],
-    stackBadge: '98%',
-    kpi: '210+',
-    kpiLabel: 'launches behind me',
-    note: 'Working across nine time zones',
+    stackBadge: '100%',
+    kpi: '3',
+    kpiLabel: 'Project',
+    //note: 'Working across nine time zones',
   },
 };
 
 export const collaborate = {
-  eyebrow: 'Working together',
-  title: 'Most of my work arrives as a half-finished thing somebody is quietly worried about.',
-  body: 'Send me yours and I will tell you what I would do with it — honestly, and before there is any question of an invoice. If it is not a fit, I will name someone who is.',
-  badge: 'Independent since 2011',
-  ctaLabel: 'Send me the brief',
+  eyebrow: 'KOLABORASI & RISET DATA',
+  title: 'Kebanyakan data awalnya datang sebagai angka mentah yang membingungkan.',
+  body: 'Kirimkan dataset atau pertanyaan penelitianmu, dan saya akan bantu menyusun pendekatan analisis yang paling tepat-jujur, terstruktur, dan mudah dipahami sebelum kita mulai bekerja sama.',
+  badge: 'S1 Statistika Universitas Cendrawasih',
+  ctaLabel: 'Kirim Detail Proyek',
   ctaHref: '/contact/',
   /**
    * The staggered pair beside the copy. Swap these for the bundled SVG
@@ -59,13 +59,13 @@ export const collaborate = {
 };
 
 export const about = {
-  eyebrow: 'Background',
-  title: 'Forty projects taught me the same lesson forty times.',
-  body: 'I spent my twenties inside agencies making things look expensive. Somewhere around the fourth rebrand that never shipped, I started asking what the work was actually for. These days I take fewer clients, ask the awkward questions in week one, and stay until the thing is live.',
+  eyebrow: 'LATAR BELAKANG & FILOSOFI',
+  title: 'Sepuluh dataset pertama mengajarkan saya satu pelajaran yang sama: ketelitian adalah segalanya.',
+  body: 'Sebagai mahasiswi statistika, saya terbiasa menggali makna di balik angka-angka mentah yang terlihat rumit. Alih-alih hanya menebak-nebak, saya fokus merumuskan pertanyaan yang tepat sejak awal, menguji hipotesis dengan cermat, dan mendampingi analisis sampai menghasilkan wawasan yang akurat.',
   points: [
-    'I read your support inbox before I open a design file.',
-    'One senior person on the work from first call to launch — nothing gets passed down.',
-    'If I think the project is the wrong project, you hear it before you pay me.',
+    'Saya memastikan kebersihan data (data cleaning) sebelum melakukan pemodelan apa pun.',
+    'Setiap analisis dikerjakan secara terstruktur dari awal hingga visualisasi akhir—tanpa ada langkah yang dilewati.',
+    'Jika ada anomali atau kesalahan asumsi pada data, Anda akan mengetahuinya sebelum kesimpulan ditarik.',
   ],
   image: {
     src: '/images/about-studio.webp',
@@ -74,10 +74,10 @@ export const about = {
     height: 954,
   },
   badge: {
-    value: '15',
-    label: 'Years working independently, almost always with teams of under twenty people.',
+    value: '2026',
+    label: 'Mahasiswi Statistika Universitas Cenderawasih yang fokus pada analisis data dan pemodelan kuantitatif.',
   },
-  ctaLabel: 'See the work',
+  ctaLabel: 'Lihat Projek Data',
   ctaHref: '/work/',
 };
 

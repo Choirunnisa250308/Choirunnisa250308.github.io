@@ -169,6 +169,7 @@ metadata, structured data, RSS feed and sitemap all follow.
 Set `site` in **`astro.config.mjs`** — it feeds canonical URLs, Open Graph tags,
 the sitemap, the RSS feed and `robots.txt`. You can also override it per build:
 
+ 
 ```bash
 SITE_URL=https://example.com npm run build
 ```

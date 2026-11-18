@@ -6,13 +6,26 @@ import type { Client } from '~/types';
  * path or a couple of shapes is all you need.
  */
 export const clients: Client[] = [
-  { name: 'Brightsill', shape: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18"/>' },
-  { name: 'Tessellate', shape: '<path d="M4 20 12 4l8 16z"/>' },
-  { name: 'Coalfield', shape: '<rect x="4" y="4" width="16" height="16" rx="5"/><path d="M9 12h6"/>' },
-  { name: 'Petrichor', shape: '<path d="M12 3.5 20 12l-8 8.5L4 12z"/>' },
-  { name: 'Saltmarsh', shape: '<circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/>' },
-  { name: 'Undergrove', shape: '<path d="M5 18V6l7 6 7-6v12"/>' },
-  { name: 'Meridian', shape: '<circle cx="12" cy="12" r="8.5"/><path d="M7 12h10M12 7v10"/>' },
+  // 1. Kurva Distribusi Normal (Bell Curve) - Ikon utama Statistika
+  { name: 'Statistika', shape: '<path d="M3 19c4 0 5-13 9-13s5 13 9 13"/><path d="M12 6v13"/>' },
+
+  // 2. Diagram Batang (Bar Chart) - Visualisasi Data
+  { name: 'Data Viz', shape: '<path d="M5 19v-6M10 19V7M15 19v-9M20 19V5"/>' },
+
+  // 3. Simbol Sigma (Σ) - Penjumlahan / Notasi Statistik
+  { name: 'Analisis', shape: '<path d="M18 5H6l6 7-6 7h12"/>' },
+
+  // 4. Diagram Venn - Probabilitas & Himpunan
+  { name: 'Probabilitas', shape: '<circle cx="9.5" cy="12" r="5.5"/><circle cx="14.5" cy="12" r="5.5"/>' },
+
+  // 5. Scatter Plot & Garis Regresi Linear
+  { name: 'Regresi', shape: '<path d="M4 18L20 6"/><circle cx="7" cy="12" r="1.2"/><circle cx="12" cy="15" r="1.2"/><circle cx="16" cy="7" r="1.2"/>' },
+
+  // 6. Diagram Lingkaran (Pie Chart)
+  { name: 'Riset Data', shape: '<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12l6 6"/>' },
+
+  // 7. Simbol Pi (π) atau Integral / Fungsi Matematika
+  { name: 'Matematika', shape: '<path d="M5 7h14M9 7v11M15 7v8.5c0 1.5 1 2.5 2.5 2.5"/>' },
 ];
 
-export const clientsLabel = 'Shipped with 30+ product teams';
+export const clientsLabel = 'Universitas Cendrawasih';

@@ -31,9 +31,9 @@ export const siteConfig: SiteConfig = {
   themeColor: '#c8f14d',
 
   contact: {
-    email: 'hello@example.com',
-    phone: '+1 (000) 555-0100',
-    phoneHref: '+10005550100',
+    email: 'nissa5500@gmail.com',
+    phone: '081280106805',
+    phoneHref: '081280106805',
     location: 'Remote — working across nine time zones',
     availability: 'Two project slots open from September',
     // Paste a Formspree / Web3Forms / Netlify endpoint here to make the
