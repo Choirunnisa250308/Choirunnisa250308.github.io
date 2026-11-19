@@ -34,8 +34,8 @@ export const siteConfig: SiteConfig = {
     email: 'nissa5500@gmail.com',
     phone: '081280106805',
     phoneHref: '081280106805',
-    location: 'Remote — working across nine time zones',
-    availability: 'Two project slots open from September',
+    location: 'Jayapura, Papua — Remote / Hybrid',
+    availability: 'Tersedia untuk proyek kecil & riset data.',
     // Paste a Formspree / Web3Forms / Netlify endpoint here to make the
     // contact form live. See "Contact form" in the README.
     formEndpoint: '',

@@ -1,6 +1,8 @@
 ---
 import Icon from '../Icon.astro';
 import { stats, statsHeading, reel } from '~/data/stats';
+import StatsChart from '../StatsChart.astro';
+import { statsHeading } from '~/data/stats';
 ---
 
 <section class="band" aria-labelledby="band-h">
@@ -9,24 +11,8 @@ import { stats, statsHeading, reel } from '~/data/stats';
       {statsHeading.lead} <span>{statsHeading.tail}</span>
     </h2>
 
-    <div class="band-row">
-      <div class="vid rev rev-d1" id="reel" data-embed={reel.embedUrl || undefined}>
-        <img
-          src={reel.image}
-          alt={reel.alt}
-          width={reel.width}
-          height={reel.height}
-          loading="lazy"
-          decoding="async"
-        />
-        {
-          reel.embedUrl && (
-            <button type="button" aria-label={reel.label}>
-              <i><Icon name="play" /></i>
-            </button>
-          )
-        }
-      </div>
+    <div class="band-chart-wrap">
+      <StatsChart />
 
       <div class="stats rev rev-d2">
         {
