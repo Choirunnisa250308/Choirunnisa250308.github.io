@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from "./ThemeToggle.astro"; // gunakan "../components/ThemeToggle.astro" jika di folder layouts
 import Icon from './Icon.astro';
 import Button from './Button.astro';
 import siteConfig from '~/config/site';
@@ -51,6 +52,7 @@ function target(href: string, anchor?: string) {
     </nav>
 
     <Button href="/work/" variant="ink" class="hdr-cta">Lihat Projek Saya</Button>
+    <ThemeToggle />
 
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
       <Icon name="menu" />

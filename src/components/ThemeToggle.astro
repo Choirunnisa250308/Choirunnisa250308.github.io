@@ -1,0 +1,35 @@
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Ganti tema"
+  style="padding: 6px 12px; border-radius: 8px; border: 1px solid currentColor; cursor: pointer;"
+>
+  <span id="theme-label">Mode Gelap</span>
+</button>
+
+<script is:inline>
+  const btn = document.getElementById("theme-toggle");
+  const label = document.getElementById("theme-label");
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      root.classList.add("dark");
+      root.setAttribute("data-theme", "dark");
+      if (label) label.textContent = "Mode Terang";
+    } else {
+      root.classList.remove("dark");
+      root.setAttribute("data-theme", "light");
+      if (label) label.textContent = "Mode Gelap";
+    }
+    localStorage.setItem("theme", theme);
+  }
+
+  const savedTheme = localStorage.getItem("theme") || "light";
+  applyTheme(savedTheme);
+
+  btn?.addEventListener("click", () => {
+    const isDark = root.classList.contains("dark");
+    applyTheme(isDark ? "light" : "dark");
+  });
+</script>
