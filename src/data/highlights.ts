@@ -59,13 +59,13 @@ export const collaborate = {
 };
 
 export const about = {
-  eyebrow: 'LATAR BELAKANG & FILOSOFI',
-  title: 'Sepuluh dataset pertama mengajarkan saya satu pelajaran yang sama: ketelitian adalah segalanya.',
-  body: 'Sebagai mahasiswi statistika, saya terbiasa menggali makna di balik angka-angka mentah yang terlihat rumit. Alih-alih hanya menebak-nebak, saya fokus merumuskan pertanyaan yang tepat sejak awal, menguji hipotesis dengan cermat, dan mendampingi analisis sampai menghasilkan wawasan yang akurat.',
+  eyebrow: 'TENTANG SAYA',
+  title: 'Mengubah angka mentah menjadi cerita yang jelas dan dapat dipercaya.',
+  body: 'Saya adalah Choirunnisa, mahasiswi Statistika di Universitas Cenderawasih yang tertarik pada pengolahan data, analisis kuantitatif, dan visualisasi informasi. Bagi saya, data yang rapi dan jujur membantu kita memahami realitas di balik angka—mulai dari latihan analisis di Excel dan Python hingga penyusunan laporan yang runtut.',
   points: [
-    'Saya memastikan kebersihan data (data cleaning) sebelum melakukan pemodelan apa pun.',
-    'Setiap analisis dikerjakan secara terstruktur dari awal hingga visualisasi akhir—tanpa ada langkah yang dilewati.',
-    'Jika ada anomali atau kesalahan asumsi pada data, Anda akan mengetahuinya sebelum kesimpulan ditarik.',
+    'Terbiasa melakukan pengecekan dan pembersihan data sejak tahap awal agar hasil analisis tetap akurat.',
+    'Mengutamakan alur kerja yang terstruktur, mulai dari eksplorasi data hingga penyajian visual yang mudah dipahami.',
+    'Terus belajar memperdalam metode statistika dan pemrograman data untuk menghasilkan insight yang relevan.',
   ],
   image: {
     src: '/images/about-studio.webp',
@@ -75,7 +75,7 @@ export const about = {
   },
   badge: {
     value: '2026',
-    label: 'Mahasiswi Statistika Universitas Cenderawasih yang fokus pada analisis data dan pemodelan kuantitatif.',
+    label: 'Mahasiswi S1 Statistika Universitas Cenderawasih — fokus pada analisis data dan pemrograman kuantitatif.',
   },
   ctaLabel: 'Lihat Projek Data',
   ctaHref: '/work/',
