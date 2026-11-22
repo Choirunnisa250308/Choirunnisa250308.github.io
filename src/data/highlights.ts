@@ -81,12 +81,7 @@ export const about = {
   ctaHref: '/work/',
 };
 
-export const servicesHeading = {
-  eyebrow: 'Engagements',
-  title: 'Six ways to put me to work.',
-  ctaLabel: 'Ask for a scope',
-  ctaHref: '/contact/',
-};
+
 
 export const workHeading = {
   eyebrow: 'Selected work',

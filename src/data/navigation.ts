@@ -9,9 +9,9 @@ import type { NavItem } from '~/types';
 export const primaryNav: NavItem[] = [
   { label: 'Beranda', href: '/' },
   { label: 'Tentang', href: '/about/', anchor: '#about' },
-  { label: 'Services', href: '/services/', anchor: '#services' },
+  
   { label: 'Work', href: '/work/', anchor: '#work' },
-  { label: 'Journal', href: '/journal/', anchor: '#journal' },
+  
   { label: 'Kontak', href: '/contact/' },
 ];
 
@@ -26,9 +26,9 @@ export const mobileExtraNav: NavItem[] = [
 export const footerNav = {
   explore: [
     { label: 'Tentang', href: '/about/' },
-    { label: 'Services', href: '/services/' },
+   
     { label: 'Selected work', href: '/work/' },
-    { label: 'Journal', href: '/journal/' },
+    
     { label: 'Kontak', href: '/contact/' },
   ] satisfies NavItem[],
   legal: [
