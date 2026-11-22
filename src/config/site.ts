@@ -13,23 +13,23 @@ import type { SiteConfig } from '~/types';
  * back here through `import.meta.env.SITE`.
  */
 export const siteConfig: SiteConfig = {
-  name: 'SWP Freelancer Portfolio',
+  name: 'Choirunnisa — Statistics & Data Portfolio',
 
   logo: {
     header: { src: '/images/header-logo.webp', width: 164, height: 58 },
     footer: { src: '/images/footer-logo.webp', width: 164, height: 58 },
   },
 
-  author: 'Robin Vale',
-  role: 'Art direction & interface design',
-  title: 'SWP Freelancer Portfolio — Art direction & interface design',
+  author: 'Choirunnisa',
+  role: 'Statistics Student & Data Enthusiast',
+  title: 'Choirunnisa — Statistics Student, Data Analysis & Web Portfolio',
   description:
-    'Portfolio of Robin Vale, an independent art director and interface designer working with small product teams on identity, interface and design systems.',
-  url: import.meta.env.SITE ?? 'https://swp-freelancer-portfolio.vercel.app',
+    'Portfolio of Choirunnisa, a Statistics student at Universitas Cenderawasih focused on data analysis, statistical research, visualization, and clean web interfaces.',
+  url: import.meta.env.SITE ?? 'https://choirunnisa250308.github.io',
   ogImage: '/og-default.png',
   locale: 'en',
   themeColor: '#c8f14d',
-
+  
   contact: {
     email: 'nissa5500@gmail.com',
     phone: '081280106805',

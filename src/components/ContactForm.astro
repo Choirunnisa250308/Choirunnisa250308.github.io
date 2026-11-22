@@ -7,7 +7,7 @@ const connected = endpoint.length > 0;
 ---
 
 <form
-  class="form"
+  class="form form--styled"
   method="post"
   action={connected ? endpoint : undefined}
   name="contact"
@@ -18,37 +18,56 @@ const connected = endpoint.length > 0;
 
   <div class="form-row">
     <div class="field">
-      <label for="cf-name">Your name</label>
-      <input id="cf-name" name="name" type="text" autocomplete="name" required placeholder="Robin Vale" />
+      <label for="cf-name">Nama lengkap</label>
+      <input
+        id="cf-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        placeholder="Choirunnisa"
+      />
     </div>
     <div class="field">
-      <label for="cf-email">Email</label>
-      <input id="cf-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" />
+      <label for="cf-email">Alamat email</label>
+      <input
+        id="cf-email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        required
+        placeholder="nama@contoh.com"
+      />
     </div>
   </div>
 
   <div class="field">
-    <label for="cf-company">Company <span class="hint">(optional)</span></label>
-    <input id="cf-company" name="company" type="text" autocomplete="organization" />
+    <label for="cf-company">Instansi / Organisasi <span class="hint">(opsional)</span></label>
+    <input
+      id="cf-company"
+      name="company"
+      type="text"
+      autocomplete="organization"
+      placeholder="Kampus, komunitas, atau tim"
+    />
   </div>
 
   <div class="field">
-    <label for="cf-type">What is this about?</label>
+    <label for="cf-type">Topik pembahasan</label>
     <select id="cf-type" name="project_type">
-      <option value="art-direction">Art direction</option>
-      <option value="interface-design" selected>Interface design</option>
-      <option value="design-systems">Design systems</option>
-      <option value="identity">Identity</option>
-      <option value="site-build">Site build</option>
-      <option value="second-opinion">Second opinion</option>
-      <option value="something-else">Something else</option>
+      <option value="data-analysis">Analisis data &amp; statistika</option>
+      <option value="research-visualization" selected>Riset &amp; visualisasi data</option>
+      <option value="interface-design">Desain antarmuka</option>
+      <option value="site-build">Pembuatan &amp; pengembangan web</option>
+      <option value="second-opinion">Diskusi &amp; tinjauan ide</option>
+      <option value="something-else">Keperluan lainnya</option>
     </select>
   </div>
 
   <div class="field">
-    <label for="cf-message">The brief</label>
+    <label for="cf-message">Ringkasan kebutuhan</label>
     <p class="hint" id="cf-message-hint">
-      What is broken, who it is breaking for, and what happens if it stays that way.
+      Apa masalah yang ingin diurai, siapa yang merasakan dampaknya, dan kondisi apa yang ingin dicapai?
     </p>
     <textarea
       id="cf-message"
@@ -56,27 +75,104 @@ const connected = endpoint.length > 0;
       rows="7"
       required
       aria-describedby="cf-message-hint"
-      placeholder="A paragraph is plenty to start with."></textarea>
+      placeholder="Satu paragraf singkat dengan konteks atau gambaran data awal sudah sangat membantu untuk memulai."></textarea>
   </div>
 
   <!-- Honeypot: hidden from people, irresistible to bots. -->
   <div class="hp" aria-hidden="true">
-    <label for="cf-website">Leave this field empty</label>
+    <label for="cf-website">Kosongkan kolom ini</label>
     <input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
   </div>
 
   {
     !connected && (
-      <p class="form-note">
-        <strong>This form is not connected yet.</strong> Add your form provider's endpoint
-        to <code>contact.formEndpoint</code> in <code>src/config/site.ts</code> and it will
-        start posting. See <em>Contact form</em> in the README for Formspree, Netlify Forms
-        and Web3Forms setups.
+      <p class="form-note form-note--setup">
+        <strong>Formulir belum terhubung.</strong> Masukkan <em>endpoint</em> penyedia formulir ke
+        <code>contact.formEndpoint</code> di <code>src/config/site.ts</code> agar pesan bisa
+        terkirim. Lihat bagian <em>Contact form</em> di README untuk panduan Formspree, Netlify
+        Forms, dan Web3Forms.
       </p>
     )
   }
 
-  <div>
-    <Button type="submit" variant="ink" icon="mail" disabled={!connected}>Send the brief</Button>
+  <div class="form-submit-wrap">
+    <Button type="submit" variant="ink" icon="mail" disabled={!connected}>
+      Kirim ringkasan
+    </Button>
   </div>
 </form>
+
+<style>
+  .form--styled {
+    --form-accent: #0f766e;
+    --form-accent-soft: rgba(15, 118, 110, 0.07);
+    --form-accent-ring: rgba(15, 118, 110, 0.2);
+    --form-amber: #b45309;
+    --form-amber-soft: rgba(180, 83, 9, 0.08);
+    --form-amber-border: rgba(180, 83, 9, 0.35);
+    padding: 24px;
+    border-radius: 18px;
+    border: 1px solid rgba(15, 118, 110, 0.16);
+    background: linear-gradient(
+      180deg,
+      rgba(15, 118, 110, 0.03) 0%,
+      transparent 42%
+    );
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  :global(.dark) .form--styled {
+    --form-accent: #2dd4bf;
+    --form-accent-soft: rgba(45, 212, 191, 0.08);
+    --form-accent-ring: rgba(45, 212, 191, 0.24);
+    --form-amber: #fbbf24;
+    --form-amber-soft: rgba(251, 191, 36, 0.09);
+    --form-amber-border: rgba(251, 191, 36, 0.35);
+    border-color: rgba(45, 212, 191, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(45, 212, 191, 0.04) 0%,
+      transparent 42%
+    );
+  }
+
+  .form--styled :is(input, select, textarea) {
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  }
+
+  .form--styled :is(input, select, textarea):focus {
+    outline: none;
+    border-color: var(--form-accent);
+    box-shadow: 0 0 0 3px var(--form-accent-ring);
+  }
+
+  .form--styled :is(input, select, textarea):hover:not(:disabled) {
+    border-color: var(--form-accent);
+  }
+
+  .form--styled .form-note--setup {
+    border-left: 3px solid var(--form-amber);
+    border-color: var(--form-amber-border);
+    border-left-width: 3px;
+    background-color: var(--form-amber-soft);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+
+  .form--styled .form-note--setup strong {
+    color: var(--form-amber);
+  }
+
+  .form-submit-wrap {
+    margin-top: 6px;
+  }
+
+  .form--styled :global(button:not(:disabled)) {
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  }
+
+  .form--styled :global(button:not(:disabled):hover) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -8px var(--form-accent-ring);
+  }
+</style>
