@@ -2,41 +2,41 @@ import type { FaqItem } from '~/types';
 
 export const faq: FaqItem[] = [
   {
-    question: 'How long does a project usually take?',
+    question: 'Berapa lama waktu pengerjaan sebuah proyek biasanya?',
     answer:
-      'A full product engagement runs six weeks end to end. An identity is three to four. A second opinion is one week. If your deadline is tighter than that, say so early and you will get an honest answer about whether it fits.',
+      'Untuk analisis data eksploratif, visualisasi, atau pembuatan halaman web biasanya memakan waktu beberapa hari hingga 1–2 minggu. Proyek riset atau pengembangan yang lebih menyeluruh disepakati sejak awal. Jika tenggat waktumu cukup ketat, sampaikan di awal agar saya bisa memberi jawaban jujur soal kesanggupannya.',
   },
   {
-    question: 'Is the price fixed?',
+    question: 'Apakah biayanya bersifat tetap atau menyesuaikan?',
     answer:
-      'Yes, wherever the scope is defined. One number, one payment schedule and a written list of what sits inside it. Anything outside becomes a conversation before work starts, never a surprise line on an invoice.',
+      'Tetap dan transparan selama ruang lingkupnya sudah jelas sejak awal—lengkap dengan rincian hasil yang akan dikerjakan. Jika di tengah jalan ada penambahan analisis atau fitur di luar kesepakatan awal, kita diskusikan terlebih dahulu tanpa biaya kejutan.',
   },
   {
-    question: 'Can you work alongside our engineers?',
+    question: 'Bisakah berkolaborasi dengan tim atau peneliti yang sudah ada?',
     answer:
-      'That is the normal arrangement. I join your stand-ups, write specs in whatever format your team already uses, and stay reachable for a month after handover so questions get answered rather than guessed at.',
+      'Sangat bisa. Saya terbiasa bekerja berdampingan dengan tim—mulai dari merapikan dataset, menyusun skrip analisis statistik maupun visualisasi, hingga menyesuaikan komponen antarmuka—dan tetap terbuka untuk diskusi lanjutan setelah serah terima.',
   },
   {
-    question: 'What lands in my hands at the end?',
+    question: 'Apa saja hasil akhir yang akan saya terima?',
     answer:
-      'Source files, a component library with every state documented, a token sheet, exported assets and a written spec covering behaviour and edge cases. Build engagements also include the front-end templates and a configured theme.',
+      'Tergantung kebutuhan proyek: bisa berupa laporan rangkuman temuan, grafik/dashboard visualisasi yang siap disajikan, skrip pengolahan data (Python/Excel) yang terdokumentasi rapi, maupun kode halaman web yang siap dipublikasikan.',
   },
   {
-    question: 'Do you take small pieces of work?',
+    question: 'Apakah menerima pekerjaan skala kecil atau bantuan spesifik?',
     answer:
-      'Sometimes. A single landing page, a pricing rewrite or a one-week review all fit comfortably. Anything larger tends to work better as a short sprint than as hours scattered across a quarter.',
+      'Ya. Tidak harus menunggu proyek besar—kebutuhan spesifik seperti pembersihan data, uji statistik tertentu, pembuatan grafik, atau perapian tampilan satu halaman web juga bisa dikerjakan secara terarah.',
   },
   {
-    question: 'Who owns the work at the end?',
+    question: 'Siapa yang memegang hak milik atas hasil pekerjaan setelah selesai?',
     answer:
-      'You do, completely, once the final payment clears. Files transfer into your accounts rather than living in mine. I only ask permission to show the work publicly, and I will keep it private if you would rather.',
+      'Sepenuhnya milik kamu setelah proses serah terima selesai. Seluruh file, kode, dan hasil olahan diserahkan ke akun atau repositori milikmu. Saya hanya akan meminta izin terlebih dahulu jika ingin menampilkannya sebagai studi kasus portofolio.',
   },
 ];
 
 export const faqHeading = {
-  eyebrow: 'FAQ',
-  title: 'Asked before nearly every project.',
-  asideTitle: 'Not sure yet?',
+  eyebrow: 'TANYA JAWAB',
+  title: 'Pertanyaan yang sering muncul sebelum mulai.',
+  asideTitle: 'Masih ragu memulai?',
   asideBody:
-    'Send a paragraph about what is going wrong. If I am not right for it I will say so and name someone who is, usually the same day.',
+    'Kirimkan satu paragraf singkat tentang kendala atau data yang sedang kamu pegang. Jika kurang cocok dengan keahlian saya, saya akan berterus terang dan memberi arahan sebaik mungkin di hari yang sama.',
 };
