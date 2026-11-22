@@ -9,9 +9,7 @@ import type { NavItem } from '~/types';
 export const primaryNav: NavItem[] = [
   { label: 'Beranda', href: '/' },
   { label: 'Tentang', href: '/about/', anchor: '#about' },
-  
-  { label: 'Work', href: '/work/', anchor: '#work' },
-  
+  { label: 'Proyek', href: '/work/' },
   { label: 'Kontak', href: '/contact/' },
 ];
 

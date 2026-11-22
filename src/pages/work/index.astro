@@ -9,34 +9,35 @@ import { graph, breadcrumbSchema, personSchema } from '~/lib/jsonld';
 
 const projects = (await getCollection('projects'))
   .filter(isVisible)
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
 
-/* Filter chips are built from the categories actually in use. */
+/* Filter chips are built from the 3 displayed projects. */
 const categories = [...new Set(projects.map((p) => p.data.category))].sort();
 
 const jsonLd = graph([
   personSchema(siteConfig),
   breadcrumbSchema([
-    { name: 'Home', url: `${siteConfig.url}/` },
-    { name: 'Work', url: `${siteConfig.url}/work/` },
+    { name: 'Beranda', url: `${siteConfig.url}/` },
+    { name: 'Proyek', url: `${siteConfig.url}/work/` },
   ]),
 ]);
 ---
 
 <PageLayout
-  title="Work"
-  heading="Six projects, six different arguments."
-  eyebrow="Selected work"
-  intro="Each of these started as a half-finished thing somebody was quietly worried about. The case studies say what was wrong, what changed, and what I would do differently."
-  description="Selected case studies in art direction, interface design, identity and design systems."
-  crumbs={[{ label: 'Work' }]}
+  title="Proyek"
+  heading="Proyek Saya."
+  eyebrow="PROYEK"
+  intro="Tiga proyek pilihan seputar analisis data, pengolahan data terstruktur, dan pengembangan web oleh Choirunnisa (Statistika, Universitas Cenderawasih)."
+  description="Tiga proyek tugas kuliah, analisis data, dan program kecil milik Choirunnisa, mahasiswi Statistika Universitas Cenderawasih."
+  crumbs={[{ label: 'Proyek' }]}
   jsonLd={jsonLd}
 >
   <section class="wrap sec" style="padding-top:0" aria-labelledby="work-list-h">
-    <h2 class="sr-only" id="work-list-h">All projects</h2>
+    <h2 class="sr-only" id="work-list-h">Daftar 3 proyek</h2>
 
-    <div class="work-filters rev" role="group" aria-label="Filter projects by discipline" id="workFilters">
-      <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+    <div class="work-filters rev" role="group" aria-label="Filter proyek berdasarkan kategori" id="workFilters">
+      <button class="chip" type="button" data-filter="all" aria-pressed="true">Semua</button>
       {
         categories.map((category) => (
           <button class="chip" type="button" data-filter={category} aria-pressed="false">
@@ -60,7 +61,7 @@ const jsonLd = graph([
       }
     </div>
 
-    {projects.length === 0 && <p class="empty">No projects yet. Add one in <code>src/content/projects/</code>.</p>}
+    {projects.length === 0 && <p class="empty">Belum ada proyek. Tambahkan file di <code>src/content/projects/</code>.</p>}
   </section>
 
   <Cta />
@@ -90,8 +91,8 @@ const jsonLd = graph([
       }
 
       if (status) {
-        const label = filter === 'all' ? 'all disciplines' : filter;
-        status.textContent = `${shown} ${shown === 1 ? 'project' : 'projects'} shown for ${label}.`;
+        const label = filter === 'all' ? 'semua kategori' : filter;
+        status.textContent = `${shown} ${shown === 1 ? 'proyek' : 'proyek'} ditampilkan untuk ${label}.`;
       }
     });
   }

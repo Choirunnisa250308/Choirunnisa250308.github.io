@@ -1,27 +1,31 @@
 ---
-import Button from '../Button.astro';
-import SectionHeading from '../SectionHeading.astro';
-import WorkCard from '../cards/WorkCard.astro';
-import { workHeading } from '~/data/highlights';
+import WorkCard from '~/components/cards/WorkCard.astro';
 import { getCollection } from 'astro:content';
 import { isVisible } from '~/lib/utils';
 
-/* Only featured projects reach the homepage. Everything lives on /work. */
-const projects = (await getCollection('projects'))
+const featuredProjects = (await getCollection('projects'))
   .filter(isVisible)
-  .filter((p) => p.data.featured)
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
 ---
 
-<section class="wrap sec" id="work" aria-labelledby="work-h">
-  <SectionHeading class="rev" eyebrow={workHeading.eyebrow} title={workHeading.title} id="work-h">
-    <Button href="/work/" variant="outline">All projects</Button>
-  </SectionHeading>
+<section class="wrap sec selected-work" aria-labelledby="home-work-heading">
+  <div class="section-head section-head--left">
+    <div>
+      <p class="eyebrow">PROYEK SAYA</p>
+      <h2 id="home-work-heading">Tiga proyek pilihan di bidang data &amp; web.</h2>
+    </div>
+    <a class="btn-link btn-all-projects" href="/work/">Lihat Semua proyek ↗</a>
+  </div>
 
-  <div class="work-grid">
+  <div class="work-grid" style="margin-top:clamp(24px,2.8vw,38px)">
     {
-      projects.map((project, i) => (
-        <WorkCard project={project} class:list={['rev', i % 3 > 0 && `rev-d${i % 3}`]} />
+      featuredProjects.map((project, i) => (
+        <WorkCard
+          project={project}
+          eager={i < 2}
+          class:list={['rev', i % 3 > 0 && `rev-d${i % 3}`]}
+        />
       ))
     }
   </div>
