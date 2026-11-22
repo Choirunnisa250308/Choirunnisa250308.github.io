@@ -12,13 +12,7 @@ image:
   height: 675
 
 technologies: ['Microsoft Word']
-results:
-  - value: '8 days'
-    label: For two engineers to build the whole site
-  - value: '0'
-    label: Engineering tickets for a copy change
-  - value: '98'
-    label: Lighthouse performance on the templates
+
 featured: true
 order: 3
 ---

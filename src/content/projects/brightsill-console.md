@@ -12,13 +12,7 @@ image:
   height: 675
 
 technologies: ['Python', 'Jupyter Notebook', 'NumPy']
-results:
-  - value: '+44%'
-    label: Setup completion in the first session
-  - value: '−6 min'
-    label: Median time to first successful deploy
-  - value: '38'
-    label: Components documented at handover
+
 featured: true
 order: 1
 ---

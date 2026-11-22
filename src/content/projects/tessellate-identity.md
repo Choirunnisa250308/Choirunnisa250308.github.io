@@ -12,13 +12,7 @@ image:
   height: 675 
 
 technologies: ['Microsoft Excel']
-results:
-  - value: '4'
-    label: Pages in the finished guideline
-  - value: '1 day'
-    label: To roll the mark across every surface
-  - value: '0'
-    label: Follow-up design requests in six months
+
 featured: true
 order: 2
 ---
