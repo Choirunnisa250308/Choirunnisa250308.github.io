@@ -96,7 +96,7 @@ export const journalHeading = {
 };
 
 export const cta = {
-  title: 'Have you got something that deserves doing properly?',
-  body: 'Tell me what is broken, who it is breaking for, and what happens if it stays that way. That is enough for me to come back with a scope and a number.',
-  primaryLabel: 'Send the brief',
+  title: 'Punya data atau ide proyek yang ingin dikerjakan dengan rapi?',
+  body: 'Ceritakan kebutuhan data, latihan pengolahan angka, atau proyek kecil yang sedang kamu siapkan. Informasi singkat saja sudah cukup agar kita bisa saling bertukar gagasan dan langkah kerja.',
+  primaryLabel: 'Hubungi Saya',
 };

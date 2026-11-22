@@ -47,7 +47,7 @@ export const siteConfig: SiteConfig = {
   ],
 
   about:
-    'An independent art direction and design practice for teams of under twenty. Fewer clients, harder questions early, and a handover that does not quietly depend on me.',
+    'Portofolio analisis data, pemrograman dasar, dan pembuatan situs web oleh mahasiswi Statistika Universitas Cenderawasih. Mengutam',
 
   copyrightHolder: 'SWP Freelancer Portfolio',
 };

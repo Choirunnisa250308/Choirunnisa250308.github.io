@@ -25,7 +25,7 @@ export const footerNav = {
   explore: [
     { label: 'Tentang Saya', href: '/about/' },
    
-    { label: 'Selected work', href: '/work/' },
+    { label: 'Proyek Saya', href: '/work/' },
     
     { label: 'Kontak', href: '/contact/' },
   ] satisfies NavItem[],

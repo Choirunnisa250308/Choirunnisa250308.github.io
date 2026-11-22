@@ -1008,3 +1008,76 @@ html:not(.dark):not([data-theme="dark"]) :is(.btn-all-projects, .selected-work :
   transform: translateY(-2px);
   box-shadow: 0 16px 28px -10px rgba(45, 212, 191, 0.48) !important;
 }
+/* Mode Terang (Default) */
+.ftr {
+  background-color: #f6f7f2;
+  color: #111827;
+}
+
+.ftr h2,
+.ftr p,
+.ftr span,
+.ftr a,
+.ftr li {
+  color: #111827;
+}
+
+.ftr .ftr-about {
+  color: #374151;
+}
+
+.ftr .ftr-soc a {
+  color: #111827;
+  border-color: rgba(17, 24, 39, 0.22);
+}
+
+/* Mode Gelap */
+:global(html.dark) .ftr,
+:global([data-theme='dark']) .ftr,
+:global(.dark) .ftr {
+  background-color: #0e1013;
+  color: #f9fafb;
+}
+
+:global(html.dark) .ftr h2,
+:global(html.dark) .ftr p,
+:global(html.dark) .ftr span,
+:global(html.dark) .ftr a,
+:global(html.dark) .ftr li,
+:global([data-theme='dark']) .ftr h2,
+:global([data-theme='dark']) .ftr p,
+:global([data-theme='dark']) .ftr span,
+:global([data-theme='dark']) .ftr a,
+:global([data-theme='dark']) .ftr li {
+  color: #f9fafb;
+}
+
+:global(html.dark) .ftr .ftr-about,
+:global([data-theme='dark']) .ftr .ftr-about {
+  color: #d1d5db;
+}
+
+:global(html.dark) .ftr .ftr-soc a,
+:global([data-theme='dark']) .ftr .ftr-soc a {
+  color: #f9fafb;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Membuat logo gambar Choirunnisa tetap jelas di mode gelap */
+:global(html.dark) .ftr-brand img,
+:global([data-theme='dark']) .ftr-brand img {
+  filter: brightness(0) invert(1);
+}
+
+/* Efek hover/fokus agar tetap kontras di kedua mode */
+.ftr a:hover,
+.ftr a:focus-visible {
+  color: #0f766e;
+}
+
+:global(html.dark) .ftr a:hover,
+:global(html.dark) .ftr a:focus-visible,
+:global([data-theme='dark']) .ftr a:hover,
+:global([data-theme='dark']) .ftr a:focus-visible {
+  color: #a3e635;
+}
