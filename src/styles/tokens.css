@@ -53,3 +53,19 @@ html[data-theme="dark"] {
   --swp-shell: #0f172a;
   color-scheme: dark;
 }
+
+/* Pastikan teks di atas latar terang/lime tetap gelap agar mudah dibaca */
+html.dark :is(header, nav) :is(a, button, .btn, [role="button"]),
+html[data-theme="dark"] :is(header, nav) :is(a, button, .btn, [role="button"]) {
+  color: #0f172a;
+}
+
+/* Jika tombol memiliki latar gelap, paksa teksnya menjadi terang */
+html.dark :is(header, nav) :is(button, .btn, [role="button"])[class*="dark"],
+html.dark :is(header, nav) :is(button, .btn, [role="button"])[aria-pressed="true"],
+html[data-theme="dark"] :is(header, nav) :is(button, .btn, [role="button"])[class*="dark"],
+html[data-theme="dark"] :is(header, nav) :is(button, .btn, [role="button"])[aria-pressed="true"] {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border-color: #334155;
+}
