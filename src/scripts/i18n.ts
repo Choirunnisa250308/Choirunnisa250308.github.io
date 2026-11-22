@@ -36,7 +36,7 @@ export const KEYED_TRANSLATIONS: Record<Lang, Record<string, string>> = {
     'ftr.copyright': 'Statistics & Web Portfolio.',
     'cta.eyebrow': 'OPEN FOR SMALL PROJECTS, RESEARCH COLLABORATION, & DATA WORK.',
     'cta.title': 'Have data or a project idea that deserves to be done neatly?',
-    'cta.cta': 'Get in touch',
+    'cta.cta': 'Call Me Now',
   },
 };
 
@@ -62,8 +62,8 @@ export const HEADER_AND_FOOTER_PAIRS: readonly TranslationPair[] = [
   ['Email Saya', 'My Email'],
   ['Kirim Detail Work', 'Send Project Details'],
   ['Kirim Detail Proyek', 'Send Project Details'],
-  ['Hubungi saya', 'Get in touch'],
-  ['Hubungi Saya', 'Get in Touch'],
+  ['Hubungi saya', 'Call Me Now'],
+  ['Hubungi Saya', 'Call Me Now'],
   ['Kirim pesan', 'Send message'],
   ['Kirim Pesan', 'Send Message'],
   [

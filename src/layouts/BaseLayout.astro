@@ -6,6 +6,7 @@ import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 import BackToTop from '~/components/BackToTop.astro';
 import siteConfig from '~/config/site';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -168,5 +169,6 @@ const { bodyClass, ...seo } = Astro.props;
   initLanguageSwitcher();
   document.addEventListener('astro:after-swap', initLanguageSwitcher);
 </script>
+
   </body>
 </html>

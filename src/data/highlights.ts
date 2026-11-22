@@ -10,7 +10,7 @@ export const hero = {
   nameLines: ['CHOIRUNNISA'],
   intro:
     'Mahasiswi Statistika di Universitas Cenderawasih yang tertarik mengolah data kompleks menjadi wawasan visual yang jelas, terstruktur, dan mudah dipahami.',
-  ctaLabel: 'Book a call',
+  ctaLabel: 'Hubungi Saya',
   ctaHref: '/contact/',
   photo: {
     src: '/images/hero-portrait.webp',
