@@ -4,6 +4,8 @@ import siteConfig from '~/config/site';
 
 const endpoint = siteConfig.contact.formEndpoint.trim();
 const connected = endpoint.length > 0;
+
+
 ---
 
 <form
@@ -15,6 +17,11 @@ const connected = endpoint.length > 0;
 >
   <!-- Netlify Forms picks the form up from this attribute at build time. -->
   <input type="hidden" name="form-name" value="contact" />
+
+  <!-- TARUH ACCESS KEY WEB3FORMS DI SINI -->
+  <input type="hidden" name="access_key" value="7137293c-71bf-463d-b511-1a249f7b2d3e" />
+
+  <!-- ... kolom input dan tombol kirim ada di bawah sini ... -->
 
   <div class="form-row">
     <div class="field">

@@ -29,16 +29,14 @@ export const siteConfig: SiteConfig = {
   ogImage: '/og-default.png',
   locale: 'en',
   themeColor: '#c8f14d',
-  
+
   contact: {
     email: 'nissa5500@gmail.com',
     phone: '081280106805',
-    phoneHref: '081280106805',
-    location: 'Jayapura, Papua — Remote / Hybrid',
-    availability: 'Tersedia untuk proyek kecil & riset data.',
-    // Paste a Formspree / Web3Forms / Netlify endpoint here to make the
-    // contact form live. See "Contact form" in the README.
-    formEndpoint: '',
+    phoneHref: '+6281280106805',
+    location: 'Jayapura, Papua — Jarak Jauh / Hybrid',
+    availability: 'Terbuka untuk proyek kecil, kolaborasi riset, & olah data.',
+    formEndpoint: 'https://api.web3forms.com/submit',
   },
 
   social: [
