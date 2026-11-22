@@ -621,3 +621,32 @@ Issues and pull requests are welcome. Before opening a PR, please run:
 ```bash
 npm run check && npm run build
 ```
+## Ringkasan Pengembangan & Kustomisasi
+
+Portofolio web ini dikembangkan dari *template* **SWP Freelancer Portfolio** berbasis **Astro** dan disesuaikan untuk **Choirunnisa**, mahasiswi **Statistika Universitas Cenderawasih** (`Choirunnisa250308`), dengan *deployment* ke **GitHub Pages**[cite: 17].
+
+### Rincian Pekerjaan yang Telah Dilakukan
+
+* **Versi Awal Web Portofolio** (`9b4acfe`) — Menyiapkan struktur dasar situs portofolio dan konten awal proyek/profil[cite: 17].
+* **Mode Gelap & Penyesuaian Kontras** (`00f17b2`, `5f5b090`, `be1283a`) — Menambahkan fitur mode gelap, memperbaiki kontras warna tombol dan teks saat mode gelap aktif, serta memperbarui gaya ikon kontak, grafik, dan warna `statsHeading`[cite: 17].
+* **Visualisasi Data dengan Chart.js** (`946a822`) — Menambahkan tampilan visualisasi data statistik pengunjung menggunakan Chart.js[cite: 17].
+* **Konten Halaman Tentang Saya** (`3be1702`) — Menyesuaikan profil akademik, pendekatan pengolahan data, perangkat kerja, dan catatan proses[cite: 17].
+* **Halaman & Formulir Kontak** (`69be44e`, `07b9faf`, `1285d36`) — Mengatur halaman dan formulir kontak, menghubungkannya ke **Web3Forms**, merapikan tata letak, serta menghubungkan tombol *Kirim Pesan* pada bagian Tanya Jawab (FAQ) ke formulir kontak[cite: 17].
+* **Pembersihan Elemen Tidak Terpakai** (`dc34b0d`) — Menghapus halaman, komponen, dan menu yang tidak diperlukan[cite: 17].
+* **Navigasi & Rute Halaman** (`fe87f8c`, `bcfaa9c`) — Memastikan seluruh menu navigasi dan perpindahan antarhalaman mengarah langsung ke halaman masing-masing[cite: 17].
+* **Pengeditan Bagian Footer** (`65fb509`) — Menyesuaikan isi, label menu, dan tampilan *footer*[cite: 17].
+* **Fitur Ganti Bahasa Otomatis ID/EN** (`4a9db01`) — Menambahkan fitur ganti bahasa otomatis antara bahasa Indonesia dan bahasa Inggris di seluruh halaman[cite: 17].
+```[cite: 16, 17]
+
+---
+
+### Cara Memasang di `README.md`
+
+1. Salin blok Markdown di atas dan tempel (`Ctrl + V` / `Cmd + V`) ke bagian `README.md` yang kamu inginkan[cite: 16].
+2. Simpan `README.md` lalu *push* perubahannya ke GitHub:
+
+```bash
+git status
+git add README.md
+git commit -m "docs: tambahkan rincian pengembangan dan kustomisasi portofolio ke README"
+git push origin main
