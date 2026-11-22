@@ -8,7 +8,7 @@ import type { NavItem } from '~/types';
  */
 export const primaryNav: NavItem[] = [
   { label: 'Beranda', href: '/' },
-  { label: 'Tentang', href: '/about/', anchor: '#about' },
+  { label: 'Tentang Saya', href: '/about/'},
   { label: 'Proyek', href: '/work/' },
   { label: 'Kontak', href: '/contact/' },
 ];
@@ -23,7 +23,7 @@ export const mobileExtraNav: NavItem[] = [
 
 export const footerNav = {
   explore: [
-    { label: 'Tentang', href: '/about/' },
+    { label: 'Tentang Saya', href: '/about/' },
    
     { label: 'Selected work', href: '/work/' },
     
