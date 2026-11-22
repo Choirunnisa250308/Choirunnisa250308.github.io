@@ -45,6 +45,7 @@
 html.dark,
 html[data-theme="dark"] {
   --swp-ink: #f8fafc;
+  --swp-ink-dark: #0f172a;
   --swp-graphite: #e2e8f0;
   --swp-slate: #94a3b8;
   --swp-mist: #1e293b;
@@ -54,18 +55,902 @@ html[data-theme="dark"] {
   color-scheme: dark;
 }
 
-/* Pastikan teks di atas latar terang/lime tetap gelap agar mudah dibaca */
-html.dark :is(header, nav) :is(a, button, .btn, [role="button"]),
-html[data-theme="dark"] :is(header, nav) :is(a, button, .btn, [role="button"]) {
+/* Tombol berlatar terang / lime di seluruh halaman saat mode gelap */
+:is(html.dark, html[data-theme="dark"]) :is(.btn, .btn-ink, [data-variant="ink"]) {
+  color: var(--swp-ink-dark, #0f172a);
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.btn, .btn-ink, [data-variant="ink"]) :is(span, b, strong) {
+  color: inherit;
+}
+
+/* Kontras Tombol Pergantian Mode (Terang / Gelap) */
+html:not(.dark):not([data-theme="dark"]) :is(
+  [data-theme-toggle],
+  .theme-toggle,
+  .mode-toggle,
+  button[aria-label*="mode" i],
+  button[aria-label*="theme" i]
+) {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #0f172a !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(
+  [data-theme-toggle],
+  .theme-toggle,
+  .mode-toggle,
+  button[aria-label*="mode" i],
+  button[aria-label*="theme" i]
+) {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+:is(
+  [data-theme-toggle],
+  .theme-toggle,
+  .mode-toggle,
+  button[aria-label*="mode" i],
+  button[aria-label*="theme" i]
+) :is(span, b, strong, svg) {
+  color: inherit !important;
+}
+
+/* ============================================================
+   Warna Jelas Saat Menu Diklik / Dipilih (Beranda, Tentang, Work, Kontak)
+   ============================================================ */
+
+/* Saat ditekan / diklik atau aktif */
+:is(.hdr .nav a, .mnav nav a):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  font-weight: 600;
+}
+
+/* Berdasarkan urutan 1–4 */
+:is(.hdr .nav, .mnav nav) > :is(a, li):nth-child(1):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr .nav, .mnav nav) > li:nth-child(1) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #1d4ed8 !important;
+}
+
+:is(.hdr .nav, .mnav nav) > :is(a, li):nth-child(2):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr .nav, .mnav nav) > li:nth-child(2) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #0f766e !important;
+}
+
+:is(.hdr .nav, .mnav nav) > :is(a, li):nth-child(3):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr .nav, .mnav nav) > li:nth-child(3) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #6d28d9 !important;
+}
+
+:is(.hdr .nav, .mnav nav) > :is(a, li):nth-child(4):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr .nav, .mnav nav) > li:nth-child(4) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #be185d !important;
+}
+
+/* Cadangan berdasarkan tujuan link (anchor / route) */
+:is(.hdr .nav a, .mnav nav a)[href*="#about"]:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr .nav a, .mnav nav a)[href*="/about"]:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #0f766e !important;
+}
+
+:is(.hdr .nav a, .mnav nav a)[href*="#work"]:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr .nav a, .mnav nav a)[href*="/work"]:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #6d28d9 !important;
+}
+
+:is(.hdr .nav a, .mnav nav a)[href*="#contact"]:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr .nav a, .mnav nav a)[href*="/contact"]:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #be185d !important;
+}
+/* ============================================================
+   Paksa Kontras Teks Menu Navigasi Agar Selalu Terbaca
+   ============================================================ */
+
+/* Link menu yang tidak aktif: warna gelap jelas agar tidak menyatu dengan latar terang */
+:is(.hdr, header, .mnav) :is(nav a, .nav a, .hdr-nav a):not(:hover):not(:active):not(:focus-visible):not([aria-current="page"]):not(.is-section):not(.active) {
+  color: #1e293b !important;
+  opacity: 1 !important;
+}
+
+/* Pastikan elemen terpilih / aktif / di-hover tampil penuh */
+:is(.hdr, header, .mnav) :is(nav a, .nav a, .hdr-nav a):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  opacity: 1 !important;
+}
+
+/* Warna berbeda per menu (1: Biru, 2: Teal, 3: Ungu, 4: Pink) */
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(1) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(1):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #1d4ed8 !important;
+}
+
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(2) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(2):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #0f766e !important;
+}
+
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(3) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(3):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #6d28d9 !important;
+}
+
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(4) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(4):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #be185d !important;
+}
+/* ============================================================
+   Tampilan Navbar Lebih Menarik (Bukan Putih Polos)
+   ============================================================ */
+
+.hdr {
+  position: sticky;
+  top: 10px;
+  z-index: 50;
+  margin: 0 auto;
+  padding: 6px 0;
+  background: transparent;
+}
+
+.hdr .hdr-in {
+  background: linear-gradient(
+    135deg,
+    rgba(242, 243, 239, 0.88) 0%,
+    rgba(224, 242, 254, 0.82) 55%,
+    rgba(236, 253, 245, 0.86) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  padding: 10px 20px;
+  box-shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.14);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ============================================================
+   Navbar Mode Gelap Lebih Hidup & Teks Jelas Terbaca
+   ============================================================ */
+
+:is(html.dark, html[data-theme="dark"]) .hdr .hdr-in {
+  background: linear-gradient(
+    135deg,
+    #111827 0%,
+    #1e293b 55%,
+    #172554 100%
+  ) !important;
+  border: 1px solid rgba(148, 163, 184, 0.28) !important;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Logo Choirunnisa di kiri agar tetap jelas pada latar gelap */
+:is(html.dark, html[data-theme="dark"]) .hdr .brand img {
+  filter: brightness(1.18) contrast(1.05);
+}
+
+/* Menu navigasi yang tidak aktif di mode gelap: putih terang & kontras */
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav a, .nav a, .hdr-nav a):not(:hover):not(:active):not(:focus-visible):not([aria-current="page"]):not(.is-section):not(.active) {
+  color: #f1f5f9 !important;
+  opacity: 1 !important;
+}
+
+/* Warna cerah khusus saat menu dipilih / aktif / hover di mode gelap */
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(1) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(1):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #60a5fa !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(2) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(2):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #2dd4bf !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(3) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(3):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #c084fc !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > li:nth-child(4) > a:is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active),
+:is(html.dark, html[data-theme="dark"]) :is(.hdr, header, .mnav) :is(nav, .nav, .hdr-nav) > a:nth-child(4):is(:hover, :active, :focus-visible, [aria-current="page"], .is-section, .active) {
+  color: #f472b6 !important;
+}
+
+/* ============================================================
+   Logo Terlihat Jelas Saat Mode Gelap
+   ============================================================ */
+
+.hdr .brand {
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+/* Saat mode gelap aktif: beri pill/badge terang lembut agar logo tidak tenggelam */
+:is(html.dark, html[data-theme="dark"]) .hdr .brand {
+  background-color: rgba(248, 250, 252, 0.94);
+  padding: 6px 12px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+}
+
+:is(html.dark, html[data-theme="dark"]) .hdr .brand img {
+  display: block;
+  filter: none;
+}
+/* ============================================================
+   Strip Topik / Marquee Lebih Menarik & Berwarna (Terang & Gelap)
+   ============================================================ */
+
+/* Wadah utama strip: gradasi lembut dengan garis batas tipis */
+:is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) {
+  background: linear-gradient(
+    90deg,
+    rgba(239, 246, 255, 0.92) 0%,
+    rgba(240, 253, 250, 0.92) 50%,
+    rgba(250, 245, 255, 0.92) 100%
+  );
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  padding-block: 14px;
+}
+
+/* Mode gelap pada strip: gelap modern dengan kilau aksen halus */
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) {
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.96) 0%,
+    rgba(19, 78, 74, 0.35) 50%,
+    rgba(30, 27, 75, 0.45) 100%
+  );
+  border-top-color: rgba(148, 163, 184, 0.2);
+  border-bottom-color: rgba(148, 163, 184, 0.2);
+}
+
+/* Item / pill di dalam strip agar tidak pucat & lebih berkarakter */
+:is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(a, span, div, li) > :is(span, strong, b, svg),
+:is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, .pill, .tag, li) {
+  opacity: 1 !important;
+}
+
+/* Label "Universitas Cenderawasih" di kiri agar menonjol sebagai identitas kampus */
+:is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :first-child {
+  font-weight: 700;
+}
+
+/* Warna aksen berbeda per item topik (Mode Terang) */
+html:not(.dark):not([data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(1) {
+  color: #1d4ed8;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(2) {
+  color: #0f766e;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(3) {
+  color: #6d28d9;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(4) {
+  color: #be185d;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(5) {
+  color: #b45309;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(6) {
+  color: #15803d;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(7) {
+  color: #0369a1;
+}
+
+/* Warna aksen cerah saat Mode Gelap agar kontras & menyala */
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(1) {
+  color: #93c5fd;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(2) {
+  color: #5eead4;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(3) {
+  color: #d8b4fe;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(4) {
+  color: #f9a8d4;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(5) {
+  color: #fcd34d;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(6) {
+  color: #86efac;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(.item, .logo-item, li, a, span):nth-child(7) {
+  color: #7dd3fc;
+}
+
+/* Pastikan ikon / simbol di dalam tiap item ikut memakai warna teksnya */
+:is(.marquee, .logos, .strip, .ticker, [class*="marquee"], [class*="strip"]) :is(svg, i) {
+  color: currentColor;
+  stroke: currentColor;
+}
+/* ============================================================
+   Tema Halaman Lebih Berwarna & Berkarakter (Terang & Gelap)
+   ============================================================ */
+
+/* Latar belakang halaman dengan gradasi halus */
+html:not(.dark):not([data-theme="dark"]) body {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.08), transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(13, 148, 136, 0.08), transparent 38%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 55%, #eef2ff 100%);
   color: #0f172a;
 }
 
-/* Jika tombol memiliki latar gelap, paksa teksnya menjadi terang */
-html.dark :is(header, nav) :is(button, .btn, [role="button"])[class*="dark"],
-html.dark :is(header, nav) :is(button, .btn, [role="button"])[aria-pressed="true"],
-html[data-theme="dark"] :is(header, nav) :is(button, .btn, [role="button"])[class*="dark"],
-html[data-theme="dark"] :is(header, nav) :is(button, .btn, [role="button"])[aria-pressed="true"] {
-  background-color: #0f172a;
+:is(html.dark, html[data-theme="dark"]) body {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(56, 189, 248, 0.11), transparent 38%),
+    radial-gradient(circle at 86% 20%, rgba(168, 85, 247, 0.11), transparent 40%),
+    linear-gradient(180deg, #090d16 0%, #0f172a 55%, #111827 100%);
   color: #f8fafc;
-  border-color: #334155;
+}
+
+/* Heading / judul utama agar lebih berkarakter */
+html:not(.dark):not([data-theme="dark"]) :is(h1, h2, .hero-title, .section-title) {
+  color: #0f172a;
+}
+
+html:not(.dark):not([data-theme="dark"]) h1 em,
+html:not(.dark):not([data-theme="dark"]) h2 em,
+html:not(.dark):not([data-theme="dark"]) .accent {
+  font-style: normal;
+  background: linear-gradient(90deg, #1d4ed8, #0f766e, #6d28d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(h1, h2, .hero-title, .section-title) {
+  color: #f8fafc;
+}
+
+:is(html.dark, html[data-theme="dark"]) h1 em,
+:is(html.dark, html[data-theme="dark"]) h2 em,
+:is(html.dark, html[data-theme="dark"]) .accent {
+  font-style: normal;
+  background: linear-gradient(90deg, #60a5fa, #2dd4bf, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Kartu & panel konten: batas halus + bayangan berwarna lembut */
+html:not(.dark):not([data-theme="dark"]) :is(.card, .work-card, .project-card, .panel, .box, [class*="card"]) {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  box-shadow: 0 12px 28px -16px rgba(15, 23, 42, 0.16);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.card, .work-card, .project-card, .panel, .box, [class*="card"]):hover {
+  transform: translateY(-2px);
+  border-color: rgba(13, 148, 136, 0.35);
+  box-shadow: 0 18px 34px -16px rgba(29, 78, 216, 0.22);
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.card, .work-card, .project-card, .panel, .box, [class*="card"]) {
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 14px 32px -16px rgba(0, 0, 0, 0.65);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.card, .work-card, .project-card, .panel, .box, [class*="card"]):hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 165, 250, 0.45);
+  box-shadow: 0 18px 36px -14px rgba(56, 189, 248, 0.18);
+}
+
+/* Tag / badge / chip agar tampil seperti lencana warna */
+html:not(.dark):not([data-theme="dark"]) :is(.tag, .badge, .chip, .pill) {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.tag, .badge, .chip, .pill) {
+  background-color: rgba(30, 41, 59, 0.9);
+  color: #93c5fd;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+}
+
+/* Link di dalam konten utama (di luar header & tombol utama) */
+html:not(.dark):not([data-theme="dark"]) main a:not(.btn):not([class*="btn"]) {
+  color: #1d4ed8;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+html:not(.dark):not([data-theme="dark"]) main a:not(.btn):not([class*="btn"]):hover {
+  color: #0f766e;
+}
+
+:is(html.dark, html[data-theme="dark"]) main a:not(.btn):not([class*="btn"]) {
+  color: #60a5fa;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+:is(html.dark, html[data-theme="dark"]) main a:not(.btn):not([class*="btn"]):hover {
+  color: #2dd4bf;
+}
+/* ============================================================
+   Kartu Kontak Lebih Rapi, Berwarna & Menarik (Terang & Gelap)
+   ============================================================ */
+
+/* Wadah daftar / kartu kontak */
+:is(.contact-list, .contact-items, .contact-grid, [class*="contact"] > div) {
+  gap: 14px;
+}
+
+/* Kartu utama tiap item kontak */
+:is(.contact-card, .contact-item, .info-card, [class*="contact"] :is(.card, .item, .row, > div:has(svg))) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 10px 24px -14px rgba(15, 23, 42, 0.14) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+:is(.contact-card, .contact-item, .info-card, [class*="contact"] :is(.card, .item, .row, > div:has(svg))):hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.28) !important;
+  box-shadow: 0 16px 30px -14px rgba(29, 78, 216, 0.2) !important;
+}
+
+/* Mode gelap untuk kartu kontak */
+:is(html.dark, html[data-theme="dark"]) :is(.contact-card, .contact-item, .info-card, [class*="contact"] :is(.card, .item, .row, > div:has(svg))) {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.86) 100%) !important;
+  border-color: rgba(148, 163, 184, 0.22) !important;
+  box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Rapikan boks teks di dalam kartu agar tidak ada garis kotak ganda yang kaku */
+:is(.contact-card, .contact-item, .info-card, [class*="contact"] :is(.card, .item, .row, > div:has(svg))) > div:not(:has(button)) {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Wadah ikon di sebelah kiri tiap kartu */
+:is(.contact-card, .contact-item, .info-card, [class*="contact"] :is(.card, .item, .row, > div:has(svg))) > :is(svg, span:first-child:has(svg), .icon, .icon-box) {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   Wadah & Gaya Ikon SVG Kartu Kontak (Terang & Gelap)
+   ============================================================ */
+
+.contact-icon-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  border-radius: 14px !important;
+  flex-shrink: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.contact-icon-badge svg {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  display: block !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2.1 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Mode Terang */
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="email"] {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="phone"] {
+  background-color: #ccfbf1 !important;
+  color: #0f766e !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="location"] {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="availability"] {
+  background-color: #ede9fe !important;
+  color: #6d28d9 !important;
+}
+
+/* Mode Gelap */
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="email"] {
+  background-color: rgba(59, 130, 246, 0.24) !important;
+  color: #93c5fd !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="phone"] {
+  background-color: rgba(20, 184, 166, 0.24) !important;
+  color: #5eead4 !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="location"] {
+  background-color: rgba(245, 158, 11, 0.24) !important;
+  color: #fcd34d !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="availability"] {
+  background-color: rgba(139, 92, 246, 0.26) !important;
+  color: #d8b4fe !important;
+}
+
+/* Tombol "Salin" agar lebih tegas, rapi, dan interaktif */
+:is(.contact-card, .contact-item, .info-card, [class*="contact"]) button {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%) !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  box-shadow: 0 6px 14px -6px rgba(37, 99, 235, 0.55);
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+:is(.contact-card, .contact-item, .info-card, [class*="contact"]) button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+:is(.contact-card, .contact-item, .info-card, [class*="contact"]) button:active {
+  transform: scale(0.97);
+}
+/* ============================================================
+   Ikon Kontak Jelas & Kontras di Mode Terang dan Gelap
+   ============================================================ */
+
+.contact-icon-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  border-radius: 14px !important;
+  flex-shrink: 0;
+}
+
+.contact-icon-badge svg {
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+/* Mode Terang */
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="email"] {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="phone"] {
+  background-color: #ccfbf1 !important;
+  color: #0f766e !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="location"] {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .contact-icon-badge[data-icon="availability"] {
+  background-color: #ede9fe !important;
+  color: #6d28d9 !important;
+}
+
+/* Mode Gelap */
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="email"] {
+  background-color: rgba(59, 130, 246, 0.22) !important;
+  color: #93c5fd !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="phone"] {
+  background-color: rgba(20, 184, 166, 0.22) !important;
+  color: #5eead4 !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="location"] {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  color: #fcd34d !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="availability"] {
+  background-color: rgba(139, 92, 246, 0.24) !important;
+  color: #d8b4fe !important;
+}
+
+/* ============================================================
+   Kontras Ikon Kontak Jelas Saat Mode Gelap Aktif
+   ============================================================ */
+
+/* Samakan mode gelap baik memakai class .dark maupun data-theme="dark" */
+:is(html.dark, html[data-theme="dark"]) :is(.contact-card, .contact-item, .info-card, [class*="contact"] :is(.card, .item, .row, > div)) {
+  color: #f8fafc;
+}
+
+/* Wadah ikon pada mode gelap: latar terang lembut agar ikon berwarna gelap tajam & kontras */
+:is(html.dark, html[data-theme="dark"]) :is(.contact-icon-badge, .contact-card [class*="icon"], .contact-item [class*="icon"], [class*="contact"] > div > :first-child) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 1. Email (Biru Tua Tegas) */
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="email"],
+:is(html.dark, html[data-theme="dark"]) [class*="contact"] > :nth-child(1) :is(.contact-icon-badge, svg, .icon, .icon-box) {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+}
+
+/* 2. Telepon / WhatsApp (Teal Tua Tegas) */
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="phone"],
+:is(html.dark, html[data-theme="dark"]) [class*="contact"] > :nth-child(2) :is(.contact-icon-badge, svg, .icon, .icon-box) {
+  background-color: #ccfbf1 !important;
+  color: #0f766e !important;
+}
+
+/* 3. Domisili (Amber / Oranye Tua Tegas) */
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="location"],
+:is(html.dark, html[data-theme="dark"]) [class*="contact"] > :nth-child(3) :is(.contact-icon-badge, svg, .icon, .icon-box) {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+}
+
+/* 4. Ketersediaan (Ungu Tua Tegas) */
+:is(html.dark, html[data-theme="dark"]) .contact-icon-badge[data-icon="availability"],
+:is(html.dark, html[data-theme="dark"]) [class*="contact"] > :nth-child(4) :is(.contact-icon-badge, svg, .icon, .icon-box) {
+  background-color: #ede9fe !important;
+  color: #6d28d9 !important;
+}
+
+/* Paksa semua garis SVG di dalam ikon kontak mode gelap memakai warna teksnya (currentColor) */
+:is(html.dark, html[data-theme="dark"]) :is(.contact-icon-badge, [class*="contact"] :is(.icon, .icon-box)) svg,
+:is(html.dark, html[data-theme="dark"]) :is(.contact-icon-badge, [class*="contact"] :is(.icon, .icon-box)) svg * {
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2.2 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+/* ============================================================
+   Kutipan & Kartu Statistik Pengunjung Lebih Menarik (Terang & Gelap)
+   ============================================================ */
+
+/* --- Kutipan Statistika --- */
+:is(blockquote, .quote, .testimonial, [class*="quote"]) {
+  position: relative;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+/* Mode Terang: kutipan kontras gelap dengan aksen gradasi biru-teal-ungu */
+html:not(.dark):not([data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]),
+html:not(.dark):not([data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(span, strong, b, p) {
+  color: #0f172a !important;
+  opacity: 1 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(em, i, mark, .highlight, .accent) {
+  font-style: normal;
+  background: linear-gradient(90deg, #1d4ed8, #0f766e, #6d28d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Mode Gelap: kutipan terang jelas & aksen gradasi cerah */
+:is(html.dark, html[data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]),
+:is(html.dark, html[data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(span, strong, b, p) {
+  color: #f8fafc !important;
+  opacity: 1 !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(em, i, mark, .highlight, .accent) {
+  font-style: normal;
+  background: linear-gradient(90deg, #60a5fa, #2dd4bf, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* --- Kartu Statistik Pengunjung Portofolio (Chart.js / Canvas) --- */
+:is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]):has(canvas) {
+  border-radius: 24px !important;
+  padding: 22px 24px !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+/* Mode Terang: kartu terang bersih dengan aksen biru & teal lembut */
+html:not(.dark):not([data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]):has(canvas) {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 55%, #eff6ff 100%) !important;
+  border: 1px solid rgba(37, 99, 235, 0.18) !important;
+  box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.18) !important;
+  color: #0f172a !important;
+}
+
+/* Mode Gelap: kartu gelap modern senada tema agar tidak menyilaukan */
+:is(html.dark, html[data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]):has(canvas) {
+  background: linear-gradient(145deg, #111827 0%, #1e293b 60%, #172554 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.26) !important;
+  box-shadow: 0 20px 42px -18px rgba(0, 0, 0, 0.72) !important;
+  color: #f8fafc !important;
+}
+
+/* Judul, subjudul & label teks di dalam kartu grafik */
+html:not(.dark):not([data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]):has(canvas) :is(h1, h2, h3, h4, .title, strong) {
+  color: #0f172a !important;
+  opacity: 1 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]):has(canvas) :is(p, small, .subtitle, .muted, span, label) {
+  color: #475569 !important;
+  opacity: 1 !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]):has(canvas) :is(h1, h2, h3, h4, .title, strong) {
+  color: #f8fafc !important;
+  opacity: 1 !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]):has(canvas) :is(p, small, .subtitle, .muted, span, label) {
+  color: #cbd5e1 !important;
+  opacity: 1 !important;
+}
+
+/* Lencana "Live / Terupdate" agar lebih hidup & jelas di kedua mode */
+html:not(.dark):not([data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]) :is(.badge, .pill, .status, .live, [class*="live"], [class*="badge"]) {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1px solid rgba(21, 128, 61, 0.25) !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]) :is(.badge, .pill, .status, .live, [class*="live"], [class*="badge"]) {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+  color: #86efac !important;
+  border: 1px solid rgba(134, 239, 172, 0.35) !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+/* Area canvas Chart.js tetap jernih & rapi */
+:is(.chart-card, .stats-card, .visitor-card, .analytics-card, [class*="chart"], [class*="stats"], [class*="visitor"]) canvas {
+  display: block;
+  max-width: 100%;
+  border-radius: 14px;
+}
+/* ============================================================
+   Gaya Kutipan Statistika Jelas & Menarik (Mode Terang & Gelap)
+   ============================================================ */
+
+/* Target elemen kutipan maupun bagian section yang memuat kalimat kutipan */
+:is(blockquote, .quote, .testimonial, [class*="quote"], section:has(blockquote), section:has([class*="quote"])) {
+  opacity: 1 !important;
+}
+
+/* Mode Terang: teks utama gelap tegas & aksen gradasi biru-teal */
+html:not(.dark):not([data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]),
+html:not(.dark):not([data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(p, span, strong, b, div) {
+  color: #0f172a !important;
+  opacity: 1 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(em, i, mark, .highlight, .accent, span.accent) {
+  font-style: normal !important;
+  font-weight: 700 !important;
+  background: linear-gradient(90deg, #1d4ed8 0%, #0f766e 55%, #6d28d9 100%);
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  opacity: 1 !important;
+}
+
+/* Mode Gelap: teks utama putih cerah & aksen gradasi biru muda-teal-ungu muda */
+:is(html.dark, html[data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]),
+:is(html.dark, html[data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(p, span, strong, b, div) {
+  color: #f8fafc !important;
+  opacity: 1 !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is(blockquote, .quote, .testimonial, [class*="quote"]) :is(em, i, mark, .highlight, .accent, span.accent) {
+  font-style: normal !important;
+  font-weight: 700 !important;
+  background: linear-gradient(90deg, #60a5fa 0%, #2dd4bf 55%, #c084fc 100%);
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  opacity: 1 !important;
+}
+/* ============================================================
+   Warna Jelas & Berkarakter untuk statsHeading (lead & tail)
+   ============================================================ */
+
+/* Mode Terang: lead gradasi biru-teal tegas, tail ungu-indigo jelas */
+html:not(.dark):not([data-theme="dark"]) :is([class*="stats"] :is(h1, h2, h3, .lead, .heading-lead), [data-stats-lead], .stats-heading-lead) {
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  background: linear-gradient(90deg, #1d4ed8 0%, #0f766e 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) :is([class*="stats"] :is(.tail, .muted, .dimmed, .heading-tail), [data-stats-tail], .stats-heading-tail) {
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  background: linear-gradient(90deg, #6d28d9 0%, #be185d 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Mode Gelap: lead gradasi biru cerah-teal cerah, tail ungu muda-pink cerah */
+:is(html.dark, html[data-theme="dark"]) :is([class*="stats"] :is(h1, h2, h3, .lead, .heading-lead), [data-stats-lead], .stats-heading-lead) {
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  background: linear-gradient(90deg, #60a5fa 0%, #2dd4bf 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+:is(html.dark, html[data-theme="dark"]) :is([class*="stats"] :is(.tail, .muted, .dimmed, .heading-tail), [data-stats-tail], .stats-heading-tail) {
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  background: linear-gradient(90deg, #c084fc 0%, #f472b6 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
 }

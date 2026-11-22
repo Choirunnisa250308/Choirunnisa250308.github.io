@@ -54,3 +54,22 @@ const { headingLevel: Heading = 'h2', id = 'about' } = Astro.props;
     </div>
   </div>
 </section>
+
+<style>
+  :global(html.dark) .about-sign :is(a, button, .btn, [class*="btn"]),
+  :global(html[data-theme="dark"]) .about-sign :is(a, button, .btn, [class*="btn"]) {
+    color: #f8fafc;
+    border-color: rgba(248, 250, 252, 0.35);
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+
+  :global(html.dark) .about-sign :is(a, button, .btn, [class*="btn"]) :is(span, b, strong),
+  :global(html[data-theme="dark"]) .about-sign :is(a, button, .btn, [class*="btn"]) :is(span, b, strong) {
+    color: inherit;
+  }
+
+  :global(html.dark) .about-sign :is(a, button, .btn, [class*="btn"]):hover,
+  :global(html[data-theme="dark"]) .about-sign :is(a, button, .btn, [class*="btn"]):hover {
+    background-color: rgba(255, 255, 255, 0.14);
+  }
+</style>

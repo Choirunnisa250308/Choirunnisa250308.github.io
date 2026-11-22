@@ -1,19 +1,51 @@
 import type { ToolkitItem } from '~/types';
 
 export const toolkit: ToolkitItem[] = [
-  { icon: 'pen', title: 'Art direction', detail: 'One visual language, held across every surface.' },
-  { icon: 'type', title: 'Typography', detail: 'Scales, pairings and a self-hosted font setup.' },
-  { icon: 'motion', title: 'Motion', detail: 'Transitions with a reason, and a reduced-motion path.' },
-  { icon: 'device', title: 'Responsive', detail: 'Every layout checked from 320px through 1920px.' },
-  { icon: 'code', title: 'Front end', detail: 'Semantic markup and CSS your engineers can read.' },
-  { icon: 'spark', title: 'Colour', detail: 'Palettes checked for contrast before they get pretty.' },
-  { icon: 'layers', title: 'Systems', detail: 'Naming that survives the next rebrand.' },
-  { icon: 'flag', title: 'Accessibility', detail: 'Contrast, focus order and keyboard paths, tested.' },
+  {
+    icon: 'layers',
+    title: 'Pembersihan Data',
+    detail: 'Cek nilai kosong, duplikat, dan anomali sejak awal sebelum angka dihitung lebih jauh.',
+  },
+  {
+    icon: 'spark',
+    title: 'Eksplorasi Statistik',
+    detail: 'Baca distribusi, ringkasan ukuran, dan pola data secara jujur tanpa memaksa kesimpulan.',
+  },
+  {
+    icon: 'motion',
+    title: 'Visualisasi Data',
+    detail: 'Ubah tabel padat menjadi grafik dan chart yang mudah dipahami tanpa menyesatkan pembaca.',
+  },
+  {
+    icon: 'code',
+    title: 'Excel & Spreadsheet',
+    detail: 'Rumus terstruktur, validasi data, dan rekap yang gampang dicek ulang kapan saja.',
+  },
+  {
+    icon: 'type',
+    title: 'Python & Notebook',
+    detail: 'Alur pengolahan terdokumentasi rapi agar langkah analisis bisa direplikasi dengan jelas.',
+  },
+  {
+    icon: 'device',
+    title: 'Web & Responsif',
+    detail: 'Sajikan hasil analisis atau portofolio ke halaman web yang ringan dan rapi di berbagai layar.',
+  },
+  {
+    icon: 'pen',
+    title: 'Kontras & Keterbacaan',
+    detail: 'Perhatikan kontras warna, tipografi, dan tata letak agar nyaman di mode terang maupun gelap.',
+  },
+  {
+    icon: 'flag',
+    title: 'Dokumentasi Rapi',
+    detail: 'Catat definisi variabel, asumsi, dan batasan data agar mudah dipahami siapa pun yang membuka.',
+  },
 ];
 
 export const toolkitHeading = {
-  eyebrow: 'How I work',
-  title: 'Nothing exotic in the box.',
+  eyebrow: 'ALUR & PERANGKAT KERJA',
+  title: 'Tidak ada rumus misterius di balik layar.',
   intro:
-    'Tools your team already has, files your team can open, and a handover that does not depend on me answering messages six months from now.',
+    'Format file yang mudah dibuka ulang, alur kerja yang bisa dibaca bersama, dan hasil analisis yang bisa dipertanggungjawabkan—bukan sekadar angka rapi tanpa penjelasan.',
 };

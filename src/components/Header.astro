@@ -122,3 +122,105 @@ function target(href: string, anchor?: string) {
     });
   }
 </script>
+
+<style>
+  /* Warna dasar & animasi link navigasi */
+  :global(.hdr .nav a),
+  :global(.mnav nav a) {
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  /* Garis bawah aksen mengikuti warna teks aktif / hover */
+  :global(.hdr .nav a::after) {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    margin-top: 2px;
+    background: currentColor;
+    transition: width 0.2s ease;
+  }
+
+  :global(.hdr .nav a:hover::after),
+  :global(.hdr .nav a[aria-current="page"]::after),
+  :global(.hdr .nav a.is-section::after) {
+    width: 100%;
+  }
+
+  /* --- MODE TERANG --- */
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a) {
+    color: #334155;
+  }
+
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(1):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(1)[aria-current="page"]),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(1).is-section),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(1):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(1)[aria-current="page"]) {
+    color: #2563eb; /* Biru */
+  }
+
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(2):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(2)[aria-current="page"]),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(2).is-section),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(2):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(2)[aria-current="page"]) {
+    color: #0d9488; /* Teal */
+  }
+
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(3):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(3)[aria-current="page"]),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(3).is-section),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(3):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(3)[aria-current="page"]) {
+    color: #7c3aed; /* Ungu */
+  }
+
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(4):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(4)[aria-current="page"]),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.hdr .nav a:nth-child(4).is-section),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(4):hover),
+  :global(html:not(.dark):not([data-theme="dark"])) :global(.mnav nav a:nth-child(4)[aria-current="page"]) {
+    color: #db2777; /* Pink */
+  }
+
+  /* --- MODE GELAP --- */
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a) {
+    color: #e2e8f0;
+  }
+
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(1):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(1)[aria-current="page"]),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(1).is-section),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(1):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(1)[aria-current="page"]) {
+    color: #60a5fa; /* Biru muda */
+  }
+
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(2):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(2)[aria-current="page"]),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(2).is-section),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(2):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(2)[aria-current="page"]) {
+    color: #2dd4bf; /* Teal cerah */
+  }
+
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(3):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(3)[aria-current="page"]),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(3).is-section),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(3):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(3)[aria-current="page"]) {
+    color: #c084fc; /* Ungu cerah */
+  }
+
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(4):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(4)[aria-current="page"]),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.hdr .nav a:nth-child(4).is-section),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(4):hover),
+  :global(:is(html.dark, html[data-theme="dark"])) :global(.mnav nav a:nth-child(4)[aria-current="page"]) {
+    color: #f472b6; /* Pink cerah */
+  }
+</style>

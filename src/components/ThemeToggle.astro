@@ -33,3 +33,27 @@
     applyTheme(isDark ? "light" : "dark");
   });
 </script>
+
+<style>
+  /* Saat mode terang aktif: tombol gelap dengan teks terang */
+  :global(html:not(.dark):not([data-theme="dark"])) #theme-toggle {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: #0f172a !important;
+  }
+
+  :global(html:not(.dark):not([data-theme="dark"])) #theme-label {
+    color: #f8fafc !important;
+  }
+
+  /* Saat mode gelap aktif: tombol terang dengan teks gelap */
+  :global(:is(html.dark, html[data-theme="dark"])) #theme-toggle {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  :global(:is(html.dark, html[data-theme="dark"])) #theme-label {
+    color: #0f172a !important;
+  }
+</style>

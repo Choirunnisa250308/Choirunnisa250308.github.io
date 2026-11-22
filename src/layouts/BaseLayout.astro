@@ -118,5 +118,49 @@ const { bodyClass, ...seo } = Astro.props;
         update();
       }
     </script>
+    <script is:inline>
+  (function () {
+    function updateChartsTheme() {
+      if (!window.Chart || !window.Chart.instances) return;
+      const isDark =
+        document.documentElement.classList.contains("dark") ||
+        document.documentElement.getAttribute("data-theme") === "dark";
+
+      const tickColor = isDark ? "#cbd5e1" : "#475569";
+      const legendColor = isDark ? "#f8fafc" : "#0f172a";
+      const gridColor = isDark ? "rgba(148, 163, 184, 0.16)" : "rgba(15, 23, 42, 0.08)";
+
+      Object.values(window.Chart.instances).forEach((chart) => {
+        if (!chart || !chart.options) return;
+        if (chart.options.plugins?.legend?.labels) {
+          chart.options.plugins.legend.labels.color = legendColor;
+        }
+        if (chart.options.scales?.x) {
+          chart.options.scales.x.ticks = { ...(chart.options.scales.x.ticks || {}), color: tickColor };
+          chart.options.scales.x.grid = { ...(chart.options.scales.x.grid || {}), color: gridColor };
+        }
+        if (chart.options.scales?.y) {
+          chart.options.scales.y.ticks = { ...(chart.options.scales.y.ticks || {}), color: tickColor };
+          chart.options.scales.y.grid = { ...(chart.options.scales.y.grid || {}), color: gridColor };
+        }
+        chart.update();
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => setTimeout(updateChartsTheme, 80));
+    } else {
+      setTimeout(updateChartsTheme, 80);
+    }
+    document.addEventListener("astro:page-load", () => setTimeout(updateChartsTheme, 80));
+
+    const observer = new MutationObserver(updateChartsTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "data-theme"],
+    });
+  })();
+</script>
+
   </body>
 </html>

@@ -26,3 +26,65 @@ import { toolkit, toolkitHeading } from '~/data/toolkit';
     </div>
   </div>
 </section>
+
+<style>
+  .kit-item {
+    position: relative;
+    background: #ffffff;
+    color: #334155;
+    border-top: 3px solid var(--kit-accent, currentColor);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .kit-item b {
+    color: #0f172a;
+  }
+
+  .kit-item span {
+    color: #475569;
+  }
+
+  .kit-item:hover {
+    transform: translateY(-3px);
+  }
+
+  /* 8 variasi warna aksen untuk mode terang */
+  .kit-item:nth-child(8n + 1) { --kit-accent: #2563eb; } /* Biru */
+  .kit-item:nth-child(8n + 2) { --kit-accent: #0d9488; } /* Teal */
+  .kit-item:nth-child(8n + 3) { --kit-accent: #7c3aed; } /* Ungu */
+  .kit-item:nth-child(8n + 4) { --kit-accent: #16a34a; } /* Hijau */
+  .kit-item:nth-child(8n + 5) { --kit-accent: #d97706; } /* Amber */
+  .kit-item:nth-child(8n + 6) { --kit-accent: #0284c7; } /* Sky */
+  .kit-item:nth-child(8n + 7) { --kit-accent: #db2777; } /* Pink */
+  .kit-item:nth-child(8n + 8) { --kit-accent: #ea580c; } /* Oranye */
+
+  .kit-item .ic-lg,
+  .kit-item svg {
+    color: var(--kit-accent);
+  }
+
+  /* Penyesuaian warna aksen saat mode gelap aktif */
+  :global(html.dark) .kit-item:nth-child(8n + 1),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 1) { --kit-accent: #2563eb; }
+
+  :global(html.dark) .kit-item:nth-child(8n + 2),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 2) { --kit-accent: #0d9488; }
+
+  :global(html.dark) .kit-item:nth-child(8n + 3),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 3) { --kit-accent: #7c3aed; }
+
+  :global(html.dark) .kit-item:nth-child(8n + 4),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 4) { --kit-accent: #16a34a; }
+
+  :global(html.dark) .kit-item:nth-child(8n + 5),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 5) { --kit-accent: #d97706; }
+
+  :global(html.dark) .kit-item:nth-child(8n + 6),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 6) { --kit-accent: #0284c7; }
+
+  :global(html.dark) .kit-item:nth-child(8n + 7),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 7) { --kit-accent: #db2777; }
+
+  :global(html.dark) .kit-item:nth-child(8n + 8),
+  :global(html[data-theme="dark"]) .kit-item:nth-child(8n + 8) { --kit-accent: #ea580c; }
+</style>
