@@ -39,7 +39,7 @@ const year = new Date().getFullYear();
     </div>
 
     <nav aria-labelledby="ftr-explore">
-      <h2 id="ftr-explore">Jelajahi</h2>
+<h2 id="ftr-explore" data-i18n="ftr.explore">Jelajahi</h2>
       <ul class="ftr-links">
         {footerNav.explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
       </ul>
@@ -47,7 +47,7 @@ const year = new Date().getFullYear();
 
     
     <div>
-      <h2>Kontak</h2>
+      <h2 data-i18n="ftr.contact">Kontak</h2>
       <div class="ftr-cbox">
         <Icon name="mail" class="ic-sm" />
         <span><a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a></span>

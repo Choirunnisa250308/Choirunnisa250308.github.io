@@ -162,5 +162,11 @@ const { bodyClass, ...seo } = Astro.props;
   })();
 </script>
 
+<script>
+  import { initLanguageSwitcher } from '~/scripts/i18n';
+
+  initLanguageSwitcher();
+  document.addEventListener('astro:after-swap', initLanguageSwitcher);
+</script>
   </body>
 </html>
