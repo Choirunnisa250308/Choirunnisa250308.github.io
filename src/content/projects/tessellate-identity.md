@@ -23,4 +23,4 @@ Proyek ini berisi latihan pengolahan data menggunakan Microsoft Excel, meliputi 
 
 ## Tautan Repositori
 
-Lihat dan pantau repositori GitHub di [https://github.com/Choirunnisa250308](https://github.com/Choirunnisa250308).
+Lihat dan pantau repositori GitHub di [https://github.com/Choirunnisa250308/Choirunnisa250308.github.io/blob/main/public/Proyek%20Microsoft%20Excel.xlsx].

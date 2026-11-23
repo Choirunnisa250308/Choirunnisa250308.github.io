@@ -23,4 +23,4 @@ Proyek ini merupakan penyusunan dokumen esai yang membahas latar belakang diri, 
 
 ## Tautan Repositori
 
-Lihat dan pantau repositori GitHub di [https://github.com/Choirunnisa250308](https://github.com/Choirunnisa250308).
+Lihat dan pantau repositori GitHub di [https://github.com/Choirunnisa250308/Choirunnisa250308.github.io/blob/main/public/Proyek%20Microsoft%20Word.pdf].

