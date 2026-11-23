@@ -627,16 +627,19 @@ Portofolio web ini dikembangkan dari *template* **SWP Freelancer Portfolio** ber
 
 ### Rincian Pekerjaan yang Telah Dilakukan
 
-* **Versi Awal Web Portofolio** (`9b4acfe`) — Menyiapkan struktur dasar situs portofolio dan konten awal proyek/profil[cite: 17].
-* **Mode Gelap & Penyesuaian Kontras** (`00f17b2`, `5f5b090`, `be1283a`) — Menambahkan fitur mode gelap, memperbaiki kontras warna tombol dan teks saat mode gelap aktif, serta memperbarui gaya ikon kontak, grafik, dan warna `statsHeading`[cite: 17].
-* **Visualisasi Data dengan Chart.js** (`946a822`) — Menambahkan tampilan visualisasi data statistik pengunjung menggunakan Chart.js[cite: 17].
-* **Konten Halaman Tentang Saya** (`3be1702`) — Menyesuaikan profil akademik, pendekatan pengolahan data, perangkat kerja, dan catatan proses[cite: 17].
-* **Halaman & Formulir Kontak** (`69be44e`, `07b9faf`, `1285d36`) — Mengatur halaman dan formulir kontak, menghubungkannya ke **Web3Forms**, merapikan tata letak, serta menghubungkan tombol *Kirim Pesan* pada bagian Tanya Jawab (FAQ) ke formulir kontak[cite: 17].
-* **Pembersihan Elemen Tidak Terpakai** (`dc34b0d`) — Menghapus halaman, komponen, dan menu yang tidak diperlukan[cite: 17].
-* **Navigasi & Rute Halaman** (`fe87f8c`, `bcfaa9c`) — Memastikan seluruh menu navigasi dan perpindahan antarhalaman mengarah langsung ke halaman masing-masing[cite: 17].
-* **Pengeditan Bagian Footer** (`65fb509`) — Menyesuaikan isi, label menu, dan tampilan *footer*[cite: 17].
-* **Fitur Ganti Bahasa Otomatis ID/EN** (`4a9db01`) — Menambahkan fitur ganti bahasa otomatis antara bahasa Indonesia dan bahasa Inggris di seluruh halaman[cite: 17].
-```[cite: 16, 17]
+* **Versi Awal Web Portofolio** (`9b4acfe`) — Menyiapkan struktur dasar situs portofolio dan konten awal proyek/profil.
+* **Mode Gelap & Penyesuaian Kontras** (`00f17b2`, `5f5b090`, `be1283a`) — Menambahkan fitur mode gelap, memperbaiki kontras warna tombol saat mode gelap aktif, serta memperbarui gaya ikon kontak, grafik, dan warna `statsHeading` di mode terang maupun gelap.
+* **Visualisasi Data dengan Chart.js** (`946a822`) — Menambahkan fitur visualisasi data menggunakan Chart.js.
+* **Konten Halaman Tentang Saya** (`3be1702`) — Menyesuaikan konten bagian Tentang Saya pada portofolio.
+* **Halaman & Formulir Kontak** (`69be44e`, `07b9faf`, `1285d36`, `d4aac91`) — Mengatur halaman dan formulir kontak, menghubungkannya ke Web3Forms, merapikan tata letak, menghubungkan tombol Kirim Pesan pada bagian Tanya Jawab ke formulir kontak, serta mengatur agar formulir kontak mengirim langsung ke email.
+* **Pembersihan Elemen Tidak Terpakai** (`dc34b0d`) — Menghapus halaman, komponen, dan menu yang tidak diperlukan.
+* **Navigasi & Rute Halaman** (`fe87f8c`, `bcfaa9c`) — Memastikan semua menu navigasi mengarah ke halaman masing-masing dan perpindahan navigasi sesuai halaman.
+* **Pengeditan Bagian Footer** (`65fb509`) — Mengedit dan menyesuaikan bagian *footer*.
+* **Fitur Ganti Bahasa Otomatis ID/EN** (`4a9db01`) — Menambahkan fitur ganti bahasa otomatis ID/EN di seluruh halaman.
+* **Dokumentasi Pengembangan & Kustomisasi** (`b8c1de1`) — Menambahkan rincian pengembangan dan kustomisasi portofolio ke dokumentasi README.
+* **Pembaruan Fitur Portofolio Terbaru** (`1c04549`) — Memperbarui fitur portofolio (termasuk i18n, pencarian, dan animasi).
+* **Penyeragaman Menu Mobile & Desktop** (`cdbae39`) — Menyamakan item navigasi dan *link* menu *mobile* dengan *desktop*.
+* **Unggah Berkas & Dokumen PDF Unduhan** (`72d807e`, `68f0b56`, `6db4777`) — Mengunggah berkas ke *repository* serta menambahkan dokumen PDF dan *link* unduhan.
 
 
 ---
