@@ -2,17 +2,23 @@
 interface Props {
   title?: string;
   namespace?: string;
+  syncStatSelector?: string;
+  startFromZero?: boolean;
 }
 
 const {
   title = "Statistik Pengunjung Portofolio",
   namespace = "choirunnisa250308-portfolio",
+  syncStatSelector = "[data-count]",
+  startFromZero = true,
 } = Astro.props;
 ---
 
 <div
   class="stats-chart-card"
   data-namespace={namespace}
+  data-sync-selector={syncStatSelector}
+  data-start-zero={startFromZero ? "true" : "false"}
   id="visitorChartCard"
 >
   <div class="stats-chart-top">
@@ -77,7 +83,7 @@ const {
     "#ca8a04",
   ];
 
-  // Data awal cadangan per label bulan
+  // Data bulan-bulan sebelumnya (bulan berjalan otomatis mulai dari 0 jika startFromZero aktif)
   const INITIAL_SERIES: Record<string, number> = {
     Mei: 120,
     Jun: 185,
@@ -85,7 +91,7 @@ const {
     Agu: 210,
     Sep: 310,
     Okt: 390,
-    Nov: 425,
+    Nov: 0,
   };
 
   let chartInstance: Chart | null = null;
@@ -122,9 +128,10 @@ const {
         plugins: {
           legend: {
             labels: {
-              color: "#e5e7eb",
+              color: "#334155",
               font: {
                 size: 12,
+                weight: 600,
               },
             },
           },
@@ -137,20 +144,20 @@ const {
         scales: {
           x: {
             ticks: {
-              color: "#d1d5db",
+              color: "#475569",
             },
             grid: {
-              color: "rgba(255, 255, 255, 0.08)",
+              color: "rgba(15, 23, 42, 0.08)",
             },
           },
           y: {
             beginAtZero: true,
             ticks: {
-              color: "#d1d5db",
+              color: "#475569",
               precision: 0,
             },
             grid: {
-              color: "rgba(255, 255, 255, 0.08)",
+              color: "rgba(15, 23, 42, 0.08)",
             },
           },
         },
@@ -158,21 +165,40 @@ const {
     });
   }
 
-  function updateTotalBadge(values: number[]) {
-    if (!totalBadge) return;
+  function syncStatCards(liveMonthCount: number) {
+    const selector = cardEl?.dataset.syncSelector;
+    if (!selector) return;
+
+    const targets = document.querySelectorAll<HTMLElement>(selector);
+    targets.forEach((el) => {
+      const parentText = el.parentElement?.textContent?.toLowerCase() ?? "";
+      if (parentText.includes("kunjungan") || targets.length === 1) {
+        const suffix = el.dataset.suffix ?? "";
+        el.dataset.count = String(liveMonthCount);
+        el.textContent = `${liveMonthCount.toLocaleString("id-ID")}${suffix}`;
+      }
+    });
+  }
+
+  function updateTotalBadge(values: number[], activeMonthCount: number) {
     const sum = values.reduce((acc, num) => acc + (Number.isFinite(num) ? num : 0), 0);
-    totalBadge.textContent = `Total: ${sum.toLocaleString("id-ID")}`;
+    if (totalBadge) {
+      totalBadge.textContent = `Total: ${sum.toLocaleString("id-ID")}`;
+    }
+    syncStatCards(activeMonthCount);
   }
 
   async function loadVisitorChart() {
     if (!chartCanvas) return;
 
     const namespace = cardEl?.dataset.namespace || "choirunnisa250308-portfolio";
+    const startFromZero = cardEl?.dataset.startZero !== "false";
     const now = new Date();
     const year = now.getFullYear();
     const monthIndex = now.getMonth();
     const monthLabel = MONTH_NAMES_ID[monthIndex];
-    const monthKey = `${year}-${String(monthIndex + 1).padStart(2, "0")}`;
+    const baseMonthKey = `${year}-${String(monthIndex + 1).padStart(2, "0")}`;
+    const counterKey = startFromZero ? `${baseMonthKey}-v0` : baseMonthKey;
 
     const labels = Object.keys(INITIAL_SERIES);
     const values = Object.values(INITIAL_SERIES);
@@ -183,11 +209,16 @@ const {
     }
 
     const activeIdx = labels.indexOf(monthLabel);
-    updateTotalBadge(values);
+    if (startFromZero && activeIdx !== -1) {
+      values[activeIdx] = 0;
+    }
+
+    const initialActiveVal = activeIdx !== -1 ? values[activeIdx] : 0;
+    updateTotalBadge(values, initialActiveVal);
     renderChart(labels, values);
 
     try {
-      const endpoint = `https://api.counterapi.dev/v1/${encodeURIComponent(namespace)}/${encodeURIComponent(monthKey)}/up`;
+      const endpoint = `https://api.counterapi.dev/v1/${encodeURIComponent(namespace)}/${encodeURIComponent(counterKey)}/up`;
       const res = await fetch(endpoint, { cache: "no-store" });
 
       if (!res.ok) {
@@ -195,26 +226,46 @@ const {
       }
 
       const payload = await res.json();
-      const liveCount = Number(payload?.count);
+      const rawCount = Number(payload?.count ?? payload?.value);
 
-      if (!Number.isNaN(liveCount) && activeIdx !== -1) {
+      if (!Number.isNaN(rawCount) && activeIdx !== -1) {
+        // Jika startFromZero aktif, hit pertama menghasilkan 1, hit kedua 2, dst.
+        const liveCount = Math.max(0, rawCount);
         values[activeIdx] = liveCount;
-        updateTotalBadge(values);
+        updateTotalBadge(values, liveCount);
         renderChart(labels, values);
 
         if (statusText) {
-          statusText.textContent = `Terupdate otomatis (${monthLabel} ${year}): ${liveCount.toLocaleString("id-ID")} kunjungan tercatat`;
+          statusText.textContent = `Terupdate otomatis (${monthLabel} ${year}, mulai dari 0): ${liveCount.toLocaleString("id-ID")} kunjungan`;
         }
         if (livePill) {
           livePill.textContent = "Live / Terupdate";
         }
       }
-    } catch {
+    } catch (err) {
+      console.warn("CounterAPI tidak terjangkau, memakai penghitung lokal mulai dari 0:", err);
+
+      const storageKey = `visitor_zero_${namespace}_${counterKey}`;
+      const savedCount = Number(localStorage.getItem(storageKey));
+      const nextLocalCount = Number.isFinite(savedCount) && savedCount >= 0 ? savedCount + 1 : 1;
+
+      try {
+        localStorage.setItem(storageKey, String(nextLocalCount));
+      } catch {
+        // Abaikan jika storage diblokir
+      }
+
+      if (activeIdx !== -1) {
+        values[activeIdx] = nextLocalCount;
+        updateTotalBadge(values, nextLocalCount);
+        renderChart(labels, values);
+      }
+
       if (statusText) {
-        statusText.textContent = `Menampilkan data awal (${monthLabel} ${year} — counter sedang tidak terjangkau)`;
+        statusText.textContent = `Mode lokal (${monthLabel} ${year}, mulai dari 0): ${nextLocalCount.toLocaleString("id-ID")} kunjungan`;
       }
       if (livePill) {
-        livePill.textContent = "Data Awal";
+        livePill.textContent = "Lokal / Terupdate";
       }
     }
   }
@@ -229,9 +280,9 @@ const {
     margin: 0 auto;
     padding: 1.75rem 2rem;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #f9fafb;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    color: #0f172a;
     text-align: left;
     box-sizing: border-box;
   }
@@ -247,13 +298,13 @@ const {
   .stats-chart-title {
     margin: 0 0 0.3rem;
     font-size: 1.2rem;
-    color: #ffffff;
+    color: #0f172a;
   }
 
   .stats-chart-sub {
     margin: 0;
     font-size: 0.9rem;
-    color: #cbd5e1;
+    color: #475569;
   }
 
   .stats-chart-badges {
@@ -268,9 +319,9 @@ const {
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #e2e8f0;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #0f172a;
+    background: rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(15, 23, 42, 0.14);
     white-space: nowrap;
   }
 
@@ -279,9 +330,9 @@ const {
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #7dd3fc;
-    background: rgba(56, 189, 248, 0.14);
-    border: 1px solid rgba(56, 189, 248, 0.38);
+    color: #0369a1;
+    background: rgba(56, 189, 248, 0.18);
+    border: 1px solid rgba(2, 132, 199, 0.35);
     white-space: nowrap;
   }
 
