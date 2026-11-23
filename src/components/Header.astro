@@ -72,17 +72,21 @@ function target(href: string, anchor?: string) {
   <div class="mnav" id="mnav">
     <nav aria-label="Mobile">
       {
-        [...primaryNav, ...mobileExtraNav].map((item) => {
+        primaryNav.map((item) => {
           const s = state(item.href);
           return (
-            <a href={item.href} aria-current={s === 'page' ? 'page' : undefined}>
+            <a
+              href={target(item.href, item.anchor)}
+              aria-current={s === 'page' ? 'page' : undefined}
+              class={s === 'section' ? 'is-section' : undefined}
+            >
               {item.label}
             </a>
           );
         })
       }
     </nav>
-    <Button href="/contact/" variant="ink">Send the brief</Button>
+    <Button href="/work/" variant="ink">Lihat Projek Saya</Button>
   </div>
 </header>
 
