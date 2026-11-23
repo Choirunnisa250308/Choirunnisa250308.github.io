@@ -1,6 +1,7 @@
 import type { Stat } from '~/types';
 
 export const stats: Stat[] = [
+  { value: 0, label: 'Kunjungan Web' },
  // { value: 2026, label: 'S1 Statistika' },
   //{ value: 3, suffix: '+', label: 'Projek' },
   //{ value: 100, suffix: '%', label: 'Tingkat kepercayaan analisis' },

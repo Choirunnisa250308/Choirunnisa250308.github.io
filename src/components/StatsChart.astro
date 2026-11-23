@@ -1,10 +1,31 @@
-<div class="stats-chart-card">
+---
+interface Props {
+  title?: string;
+  namespace?: string;
+}
+
+const {
+  title = "Statistik Pengunjung Portofolio",
+  namespace = "choirunnisa250308-portfolio",
+} = Astro.props;
+---
+
+<div
+  class="stats-chart-card"
+  data-namespace={namespace}
+  id="visitorChartCard"
+>
   <div class="stats-chart-top">
     <div>
-      <h3 class="stats-chart-title">Statistik Pengunjung Portofolio</h3>
-      <p class="stats-chart-sub" id="visitorStatusText">Memuat data kunjungan terbaru...</p>
+      <h3 class="stats-chart-title">{title}</h3>
+      <p class="stats-chart-sub" id="visitorStatusText">
+        Memuat data kunjungan terbaru...
+      </p>
     </div>
-    <span class="stats-chart-pill">Live / Terupdate</span>
+    <div class="stats-chart-badges">
+      <span class="stats-chart-total" id="visitorTotalBadge">Total: -</span>
+      <span class="stats-chart-pill" id="visitorLivePill">Live / Terupdate</span>
+    </div>
   </div>
 
   <div class="stats-chart-canvas-box">
@@ -15,10 +36,18 @@
 <script>
   import Chart from "chart.js/auto";
 
+  const cardEl = document.getElementById("visitorChartCard") as HTMLElement | null;
   const chartCanvas = document.getElementById("bandStatsChart") as HTMLCanvasElement | null;
   const statusText = document.getElementById("visitorStatusText");
+  const totalBadge = document.getElementById("visitorTotalBadge");
+  const livePill = document.getElementById("visitorLivePill");
 
-  const barColors = [
+  const MONTH_NAMES_ID = [
+    "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+    "Jul", "Agu", "Sep", "Okt", "Nov", "Des",
+  ];
+
+  const BAR_COLORS = [
     "#38bdf8",
     "#a78bfa",
     "#f472b6",
@@ -26,9 +55,14 @@
     "#c8f14d",
     "#2dd4bf",
     "#facc15",
+    "#60a5fa",
+    "#c084fc",
+    "#fb7185",
+    "#34d399",
+    "#fde047",
   ];
 
-  const borderColors = [
+  const BORDER_COLORS = [
     "#0284c7",
     "#8b5cf6",
     "#ec4899",
@@ -36,37 +70,34 @@
     "#b4e032",
     "#14b8a6",
     "#eab308",
+    "#2563eb",
+    "#9333ea",
+    "#e11d48",
+    "#059669",
+    "#ca8a04",
   ];
 
-  async function loadVisitorChart() {
+  // Data awal cadangan per label bulan
+  const INITIAL_SERIES: Record<string, number> = {
+    Mei: 120,
+    Jun: 185,
+    Jul: 240,
+    Agu: 210,
+    Sep: 310,
+    Okt: 390,
+    Nov: 425,
+  };
+
+  let chartInstance: Chart | null = null;
+
+  function renderChart(labels: string[], values: number[]) {
     if (!chartCanvas) return;
 
-    // Data awal cadangan jika endpoint belum tersedia
-    let labels = ["Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov"];
-    let values = [120, 185, 240, 210, 310, 390, 425];
-
-    try {
-      // Ganti '/api/visitors' dengan URL API / JSON / Supabase / Google Analytics kamu
-      const res = await fetch("/api/visitors", { cache: "no-store" });
-      if (res.ok) {
-        const payload = await res.json();
-        if (Array.isArray(payload.labels) && Array.isArray(payload.values)) {
-          labels = payload.labels;
-          values = payload.values;
-          if (statusText) {
-            statusText.textContent = "Data terupdate otomatis dari sumber kunjungan";
-          }
-        }
-      } else if (statusText) {
-        statusText.textContent = "Menampilkan data awal (hubungkan API untuk data live)";
-      }
-    } catch {
-      if (statusText) {
-        statusText.textContent = "Menampilkan data awal (hubungkan API untuk data live)";
-      }
+    if (chartInstance) {
+      chartInstance.destroy();
     }
 
-    new Chart(chartCanvas, {
+    chartInstance = new Chart(chartCanvas, {
       type: "bar",
       data: {
         labels,
@@ -74,27 +105,43 @@
           {
             label: "Jumlah Pengunjung",
             data: values,
-            backgroundColor: labels.map((_, i) => barColors[i % barColors.length]),
-            borderColor: labels.map((_, i) => borderColors[i % borderColors.length]),
+            backgroundColor: labels.map((_, idx) => BAR_COLORS[idx % BAR_COLORS.length]),
+            borderColor: labels.map((_, idx) => BORDER_COLORS[idx % BORDER_COLORS.length]),
             borderWidth: 1.5,
             borderRadius: 8,
+            maxBarThickness: 54,
           },
         ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: {
+          duration: 600,
+        },
         plugins: {
           legend: {
             labels: {
               color: "#e5e7eb",
+              font: {
+                size: 12,
+              },
+            },
+          },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ` ${ctx.parsed.y ?? 0} kunjungan`,
             },
           },
         },
         scales: {
           x: {
-            ticks: { color: "#d1d5db" },
-            grid: { color: "rgba(255, 255, 255, 0.08)" },
+            ticks: {
+              color: "#d1d5db",
+            },
+            grid: {
+              color: "rgba(255, 255, 255, 0.08)",
+            },
           },
           y: {
             beginAtZero: true,
@@ -102,11 +149,74 @@
               color: "#d1d5db",
               precision: 0,
             },
-            grid: { color: "rgba(255, 255, 255, 0.08)" },
+            grid: {
+              color: "rgba(255, 255, 255, 0.08)",
+            },
           },
         },
       },
     });
+  }
+
+  function updateTotalBadge(values: number[]) {
+    if (!totalBadge) return;
+    const sum = values.reduce((acc, num) => acc + (Number.isFinite(num) ? num : 0), 0);
+    totalBadge.textContent = `Total: ${sum.toLocaleString("id-ID")}`;
+  }
+
+  async function loadVisitorChart() {
+    if (!chartCanvas) return;
+
+    const namespace = cardEl?.dataset.namespace || "choirunnisa250308-portfolio";
+    const now = new Date();
+    const year = now.getFullYear();
+    const monthIndex = now.getMonth();
+    const monthLabel = MONTH_NAMES_ID[monthIndex];
+    const monthKey = `${year}-${String(monthIndex + 1).padStart(2, "0")}`;
+
+    const labels = Object.keys(INITIAL_SERIES);
+    const values = Object.values(INITIAL_SERIES);
+
+    if (!labels.includes(monthLabel)) {
+      labels.push(monthLabel);
+      values.push(0);
+    }
+
+    const activeIdx = labels.indexOf(monthLabel);
+    updateTotalBadge(values);
+    renderChart(labels, values);
+
+    try {
+      const endpoint = `https://api.counterapi.dev/v1/${encodeURIComponent(namespace)}/${encodeURIComponent(monthKey)}/up`;
+      const res = await fetch(endpoint, { cache: "no-store" });
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      const payload = await res.json();
+      const liveCount = Number(payload?.count);
+
+      if (!Number.isNaN(liveCount) && activeIdx !== -1) {
+        values[activeIdx] = liveCount;
+        updateTotalBadge(values);
+        renderChart(labels, values);
+
+        if (statusText) {
+          statusText.textContent = `Terupdate otomatis (${monthLabel} ${year}): ${liveCount.toLocaleString("id-ID")} kunjungan tercatat`;
+        }
+        if (livePill) {
+          livePill.textContent = "Live / Terupdate";
+        }
+      }
+    } catch {
+      if (statusText) {
+        statusText.textContent = `Menampilkan data awal (${monthLabel} ${year} — counter sedang tidak terjangkau)`;
+      }
+      if (livePill) {
+        livePill.textContent = "Data Awal";
+      }
+    }
   }
 
   loadVisitorChart();
@@ -129,7 +239,7 @@
   .stats-chart-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     margin-bottom: 1.5rem;
   }
@@ -144,6 +254,24 @@
     margin: 0;
     font-size: 0.9rem;
     color: #cbd5e1;
+  }
+
+  .stats-chart-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stats-chart-total {
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    white-space: nowrap;
   }
 
   .stats-chart-pill {
